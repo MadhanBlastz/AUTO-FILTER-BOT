@@ -549,6 +549,7 @@ async def start(client, message):
             file = getattr(msg, filetype.value)
             title = '@File_Search_RoBot  ' + ' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), file.file_name.split()))
             size=get_size(file.file_size)
+            text="<b>🅽🅾🆃🅴 Tʜɪs ғɪʟᴇ/ᴠɪᴅᴇᴏ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ 5 ᴍɪɴ, Sᴏ ғᴏʀᴡᴀʀᴅ ᴛᴏ sᴀᴠᴇᴅ ᴍᴇssᴀɢᴇs </b>"
             f_caption = f"<code>{title}</code>"
             if CUSTOM_FILE_CAPTION:
                 try:
@@ -572,6 +573,7 @@ async def start(client, message):
     files = files_[0]
     title = '@File_Search_RoBot  ' + ' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), files.file_name.split()))
     size=get_size(files.file_size)
+    text="<b>🅽🅾🆃🅴 Tʜɪs ғɪʟᴇ/ᴠɪᴅᴇᴏ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ 5 ᴍɪɴ, Sᴏ ғᴏʀᴡᴀʀᴅ ᴛᴏ sᴀᴠᴇᴅ ᴍᴇssᴀɢᴇs </b>"
     f_caption=files.caption
     if CUSTOM_FILE_CAPTION:
         try:
@@ -581,6 +583,7 @@ async def start(client, message):
             f_caption=f_caption
     if f_caption is None:
         f_caption = f"@File_Search_RoBot  {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), files.file_name.split()))}"
+        text="<b>🅽🅾🆃🅴 Tʜɪs ғɪʟᴇ/ᴠɪᴅᴇᴏ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ 5 ᴍɪɴ, Sᴏ ғᴏʀᴡᴀʀᴅ ᴛᴏ sᴀᴠᴇᴅ ᴍᴇssᴀɢᴇs </b>"
     if not await db.has_premium_access(message.from_user.id):
         if not await check_verification(client, message.from_user.id) and VERIFY == True:
             btn = [[

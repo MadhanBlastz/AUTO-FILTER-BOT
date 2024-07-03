@@ -571,7 +571,7 @@ async def start(client, message):
         return await message.reply('No such file exist.')
     files = files_[0]
     title = '@File_Search_RoBot  ' + ' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), files.file_name.split()))
-    size=get_size(files.file_size)"<b>\n🅽🅾🆃🅴 Tʜɪs ғɪʟᴇ/ᴠɪᴅᴇᴏ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ 5 ᴍɪɴ, Sᴏ ғᴏʀᴡᴀʀᴅ ᴛᴏ sᴀᴠᴇᴅ ᴍᴇssᴀɢᴇs </b>"
+    size="(get_size(files.file_size))<b>\n🅽🅾🆃🅴 Tʜɪs ғɪʟᴇ/ᴠɪᴅᴇᴏ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ 5 ᴍɪɴ, Sᴏ ғᴏʀᴡᴀʀᴅ ᴛᴏ sᴀᴠᴇᴅ ᴍᴇssᴀɢᴇs </b>"
     f_caption=files.caption
     if CUSTOM_FILE_CAPTION:
         try:

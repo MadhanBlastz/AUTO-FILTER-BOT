@@ -4,7 +4,8 @@
 
 
 class script(object):
-    START_TXT = """<b><blockquote>Hᴇʟʟᴏ {}, Mʏ ɴᴀᴍᴇ ɪs <a href=https://t.me/{}>{}</a></blockquote></b>"""
+    START_TXT = """<b><blockquote>Hᴇʟʟᴏ {}, Mʏ ɴᴀᴍᴇ ɪs <a href=https://t.me/{}>{}</a></blockquote>
+   I can provide best Quality Movies/WebSeries/Animes in telugu + Multi in Low MB by just typing the title </b>"""
 
     HELP_TXT = """<b>Hᴇʏ {}
 Hᴇʀᴇ Is Tʜᴇ Hᴇʟᴘ Fᴏʀ Mʏ Cᴏᴍᴍᴀɴᴅs.</b>"""

@@ -5,7 +5,7 @@
 
 class script(object):
     START_TXT = """<b><blockquote>Hᴇʟʟᴏ {}, Mʏ ɴᴀᴍᴇ ɪs <a href=https://t.me/{}>{}</a></blockquote>
-   I can provide best Quality Movies/WebSeries/Animes in telugu + Multi in Low MB by just typing the title </b>"""
+I ᴄᴀɴ ᴘʀᴏᴠɪᴅᴇ ʙᴇsᴛ Qᴜᴀʟɪᴛʏ Mᴏᴠɪᴇs/WᴇʙSᴇʀɪᴇs/Aɴɪᴍᴇs ɪɴ ᴛᴇʟᴜɢᴜ + Mᴜʟᴛɪ ɪɴ Lᴏᴡ MB ʙʏ ᴊᴜsᴛ ᴛʏᴘɪɴɢ ᴛʜᴇ ᴛɪᴛʟᴇ </b>"""
 
     HELP_TXT = """<b>Hᴇʏ {}
 Hᴇʀᴇ Is Tʜᴇ Hᴇʟᴘ Fᴏʀ Mʏ Cᴏᴍᴍᴀɴᴅs.</b>"""

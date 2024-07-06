@@ -24,7 +24,7 @@ BOT_TOKEN = environ.get('BOT_TOKEN', "7430002258:AAHOgiD_KpnLJxIijlXzPjj28OIMH-V
 
 # Bot settings
 CACHE_TIME = int(environ.get('CACHE_TIME', 1800))
-PICS = (environ.get('PICS', 'https://graph.org/file/3edfa4f6b18c72d85e4d7.jpg')).split() #SAMPLE PIC
+PICS = (environ.get('PICS', 'https://graph.org/file/aab2d343eed6eda0e3bbf.jpg')).split() #SAMPLE PIC
 NOR_IMG = environ.get("NOR_IMG", "https://graph.org/file/b69af2db776e4e85d21ec.jpg")
 MELCOW_VID = environ.get("MELCOW_VID", "https://t.me/How_To_Open_Linkl")
 SPELL_IMG = environ.get("SPELL_IMG", "https://te.legra.ph/file/15c1ad448dfe472a5cbb8.jpg")
@@ -69,7 +69,7 @@ OWNER_USERNAME = environ.get('OWNER_USERNAME', 'kingvj01') # owner username with
 GRP_LNK = environ.get('GRP_LNK', 'https://t.me/+vGh9ZXwDQPZhYjg1')
 CHNL_LNK = environ.get('CHNL_LNK', 'https://t.me/+exlB9JM0tyc2NzI1')
 TUTORIAL = environ.get('TUTORIAL', 'https://t.me/How_To_Open_Linkl')
-SUPPORT_CHAT = environ.get('SUPPORT_CHAT', 'https://t.me/+vGh9ZXwDQPZhYjg1') # Support Chat Link Without https:// or @
+SUPPORT_CHAT = environ.get('SUPPORT_CHAT', '+vGh9ZXwDQPZhYjg1') # Support Chat Link Without https:// or @
 
 # True Or False
 AI_SPELL_CHECK = bool(environ.get('AI_SPELL_CHECK', True))

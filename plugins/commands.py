@@ -24,54 +24,90 @@ join_db = JoinReqs
 
 
 async def start(client, message):
+    # React with a thumbs up emoji
     await message.react(emoji="👍")
+    
+    # Check if the message is from a group or supergroup
     if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
-        buttons = [[
-            
-            InlineKeyboardButton('✇ Jᴏɪɴ Uᴘᴅᴀᴛᴇ Cʜᴀɴɴᴇʟ ✇', url=CHNL_LNK)
-        ]]
+        # Prepare inline keyboard for groups
+        buttons = [
+            [
+                InlineKeyboardButton('✇ Join Update Channel ✇', url=CHNL_LNK)
+            ]
+        ]
         reply_markup = InlineKeyboardMarkup(buttons)
-        await message.reply(script.START_TXT.format(message.from_user.mention if message.from_user else message.chat.title, temp.U_NAME, temp.B_NAME), reply_markup=reply_markup, disable_web_page_preview=True)
-        await asyncio.sleep(2) # 😢 https://github.com/EvamariaTG/EvaMaria/blob/master/plugins/p_ttishow.py#L17 😬 wait a bit, before checking.
+        
+        # Send welcome message with instructions
+        welcome_message = script.START_TXT.format(
+            message.from_user.mention if message.from_user else message.chat.title,
+            temp.U_NAME,
+            temp.B_NAME
+        )
+        
+        await message.reply(welcome_message, reply_markup=reply_markup, disable_web_page_preview=True)
+        
+        # Delay before checking if the chat is already in the database
+        await asyncio.sleep(2)
+        
+        # Check if the chat is already in the database
         if not await db.get_chat(message.chat.id):
-            total=await client.get_chat_members_count(message.chat.id)
+            total = await client.get_chat_members_count(message.chat.id)
             await client.send_message(LOG_CHANNEL, script.LOG_TEXT_G.format(message.chat.title, message.chat.id, total, "Unknown"))       
             await db.add_chat(message.chat.id, message.chat.title)
-        return 
+        
+        return
+    
+    # Check if the user is interacting for the first time
     if not await db.is_user_exist(message.from_user.id):
+        # Add the user to the database
         await db.add_user(message.from_user.id, message.from_user.first_name)
+        
+        # Log the new user interaction
         await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
-    if len(message.command) != 2:
+        
+        # Send welcome message to the user
+        welcome_message = f"Hello {message.from_user.first_name}, welcome to the bot!\n\nYou can start by using the available commands or buttons below."
+        
+        # Prepare inline keyboard for individual users
         if PREMIUM_AND_REFERAL_MODE == True:
-            buttons = [[
-                InlineKeyboardButton('⤬ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ ⤬', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
-            ],[
-                InlineKeyboardButton('Eᴀʀɴ Mᴏɴᴇʏ 💸', callback_data="shortlink_info"),
-                InlineKeyboardButton('⌬ Mᴏᴠɪᴇ Gʀᴏᴜᴘ', url=GRP_LNK)
-            ],[
-                InlineKeyboardButton('〄 Hᴇʟᴘ', callback_data='help'),
-                InlineKeyboardButton('⍟ Aʙᴏᴜᴛ', callback_data='about')
-            ],[
-                InlineKeyboardButton('🔻 ɢᴇᴛ ғʀᴇᴇ/ᴘᴀɪᴅ sᴜʙsᴄʀɪᴘᴛɪᴏɴ 🔻', callback_data='subscription')
-            ],[
-                InlineKeyboardButton('✇ Jᴏɪɴ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ ✇', url=CHNL_LNK)
-            ]]
+            buttons = [
+                [
+                    InlineKeyboardButton('⤬ Add Me To Your Group ⤬', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+                ],
+                [
+                    InlineKeyboardButton('Earn Money 💸', callback_data="shortlink_info"),
+                    InlineKeyboardButton('Movie Group', url=GRP_LNK)
+                ],
+                [
+                    InlineKeyboardButton('Help', callback_data='help'),
+                    InlineKeyboardButton('About', callback_data='about')
+                ],
+                [
+                    InlineKeyboardButton('Get Free/Paid Subscription', callback_data='subscription')
+                ],
+                [
+                    InlineKeyboardButton('✇ Join Updates Channel ✇', url=CHNL_LNK)
+                ]
+            ]
         else:
-            buttons = [[
-                
-                InlineKeyboardButton('✇ Jᴏɪɴ Cʜᴀɴɴᴇʟ ✇', url=CHNL_LNK)
-            ]]
+            buttons = [
+                [
+                    InlineKeyboardButton('✇ Join Channel ✇', url=CHNL_LNK)
+                ]
+            ]
+        
         reply_markup = InlineKeyboardMarkup(buttons)
-        m=await message.reply_sticker("CAACAgUAAxkBAAIGBGaIQ3GTvjPRwI1B_lFMKU-SFBSqAAIhAAPBJDExrJTo8r6ffCUeBA") 
-        await asyncio.sleep(1)
-        await m.delete()
+        
+        # Send the welcome message with an optional photo
         await message.reply_photo(
             photo=random.choice(PICS),
-            caption=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
+            caption=welcome_message,
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
+        
         return
+
     
     if AUTH_CHANNEL and not await is_subscribed(client, message):
         try:

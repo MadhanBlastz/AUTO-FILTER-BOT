@@ -79,7 +79,7 @@ async def start(client, message):
         welcome_message = f"Hello {first_name}, welcome back!"
 
     # Prepare inline keyboard for individual users
-    if PREMIUM_AND_REFERAL_MODE:
+    if PREMIUM_AND_REFERAL_MODE == True:
         buttons = [
             [InlineKeyboardButton('⤬ Add Me To Your Group ⤬', url=f'http://t.me/{temp.U_NAME}?startgroup=true')],
             [InlineKeyboardButton('Earn Money 💸', callback_data="shortlink_info"), InlineKeyboardButton('Movie Group', url=GRP_LNK)],

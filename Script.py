@@ -4,9 +4,10 @@
 
 
 class script(object):
-    START_TXT = """<b><blockquote>Hᴇʟʟᴏ {}, Mʏ ɴᴀᴍᴇ ɪs <a href=https://t.me/{}>{}</a></blockquote>
-I ᴄᴀɴ ᴘʀᴏᴠɪᴅᴇ ʙᴇsᴛ Qᴜᴀʟɪᴛʏ Mᴏᴠɪᴇs/WᴇʙSᴇʀɪᴇs/Aɴɪᴍᴇs ɪɴ <u>ᴛᴇʟᴜɢᴜ + Mᴜʟᴛɪ</u> ɪɴ Lᴏᴡ MB ʙʏ ᴊᴜsᴛ ᴛʏᴘɪɴɢ ᴛʜᴇ ᴛɪᴛʟᴇ 😇 </b>"""
-
+    START_TXT1 = """<b><blockquote>Hᴇʟʟᴏ {}, Mʏ ɴᴀᴍᴇ ɪs <a href=https://t.me/{}>{}</a></blockquote>
+Tᴏ ᴜsᴇ ᴍᴇ, ʏᴏᴜ ɴᴇᴇᴅ ᴛᴏ sʜᴀʀᴇ ᴛʜɪs ʙᴏᴛ ᴛᴏ ᴀᴛʟᴇᴀsᴛ 3 ᴍᴇᴍʙᴇʀs, Tᴀᴘ Oɴ Sʜᴀʀᴇ 😇 </b>"""
+    START_TXT2 = """<b><blockquote>Hᴇʟʟᴏ {}, Mʏ ɴᴀᴍᴇ ɪs <a href=https://t.me/{}>{}</a></blockquote>
+Nᴏᴡ I ᴄᴀɴ ᴘʀᴏᴠɪᴅᴇ ʙᴇsᴛ Qᴜᴀʟɪᴛʏ Mᴏᴠɪᴇs/WᴇʙSᴇʀɪᴇs/Aɴɪᴍᴇs ɪɴ <u>ᴛᴇʟᴜɢᴜ + Mᴜʟᴛɪ</u> ɪɴ Lᴏᴡ MB ʙʏ ᴊᴜsᴛ ᴛʏᴘɪɴɢ ᴛʜᴇ ᴛɪᴛʟᴇ 😇 </b>"""
     HELP_TXT = """<b>Hᴇʏ {}
 Hᴇʀᴇ Is Tʜᴇ Hᴇʟᴘ Fᴏʀ Mʏ Cᴏᴍᴍᴀɴᴅs.</b>"""
 

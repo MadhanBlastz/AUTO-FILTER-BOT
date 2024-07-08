@@ -90,14 +90,14 @@ async def start(client, message):
         
         
         # Send the welcome message with an optional photo
-        await message.reply_photo(
+    await message.reply_photo(
             photo=random.choice(PICS),
             caption=welcome_message,
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
         
-        return
+    return
 
 
 

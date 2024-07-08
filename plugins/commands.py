@@ -65,7 +65,7 @@ async def start(client, message):
         return
     
     # Check if the user is interacting for the first time
-  if not await db.is_user_exist(message.from_user.id):
+    if not await db.is_user_exist(message.from_user.id):
     # Add the user to the database
      await db.add_user(message.from_user.id, message.from_user.first_name)
     
@@ -77,7 +77,7 @@ async def start(client, message):
         f"Hello {message.from_user.first_name}, welcome to the bot!\n\n"
         "You can start by using the available commands or buttons below."
     )
-  else:
+    else:
     # Send welcome back message to an existing user
     welcome_message = (
         f"Hello {message.from_user.first_name}, welcome back to the bot!\n\n"

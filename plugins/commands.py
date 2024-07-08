@@ -28,9 +28,6 @@ join_db = JoinReqs
 
 
 
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup
-import random
-import asyncio
 
 async def start(client, message):
     global user_interactions

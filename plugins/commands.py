@@ -87,34 +87,7 @@ async def start(client, message):
     await client.send_message(message.from_user.id, welcome_message)
 
         # Prepare inline keyboard for individual users
-        if PREMIUM_AND_REFERAL_MODE == True:
-            buttons = [
-                [
-                    InlineKeyboardButton('⤬ Add Me To Your Group ⤬', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
-                ],
-                [
-                    InlineKeyboardButton('Earn Money 💸', callback_data="shortlink_info"),
-                    InlineKeyboardButton('Movie Group', url=GRP_LNK)
-                ],
-                [
-                    InlineKeyboardButton('Help', callback_data='help'),
-                    InlineKeyboardButton('About', callback_data='about')
-                ],
-                [
-                    InlineKeyboardButton('Get Free/Paid Subscription', callback_data='subscription')
-                ],
-                [
-                    InlineKeyboardButton('✇ Join Updates Channel ✇', url=CHNL_LNK)
-                ]
-            ]
-        else:
-            buttons = [
-                [
-                    InlineKeyboardButton('✇ Join Channel ✇', url=CHNL_LNK)
-                ]
-            ]
         
-        reply_markup = InlineKeyboardMarkup(buttons)
         
         # Send the welcome message with an optional photo
         await message.reply_photo(

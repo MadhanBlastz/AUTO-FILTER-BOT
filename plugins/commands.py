@@ -77,7 +77,7 @@ async def start(client, message):
         f"Hello {message.from_user.first_name}, welcome to the bot!\n\n"
         "You can start by using the available commands or buttons below."
     )
-        if len(message.command) != 2:
+      if len(message.command) != 2:
          if PREMIUM_AND_REFERAL_MODE == True:
             buttons = [[
                 InlineKeyboardButton('⤬ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ ⤬', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
@@ -114,7 +114,7 @@ async def start(client, message):
         f"Hello {message.from_user.first_name}, welcome back to the bot!\n\n"
         "You can start by using the available commands or buttons below."
     )
-        if len(message.command) != 2:
+      if len(message.command) != 2:
          if PREMIUM_AND_REFERAL_MODE == True:
             buttons = [[
                 InlineKeyboardButton('⤬ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ ⤬', url=f'http://t.me/{temp.U_NAME}?startgroup=true')

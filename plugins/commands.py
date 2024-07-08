@@ -77,18 +77,8 @@ async def start(client, message):
         f"Hello {message.from_user.first_name}, welcome to the bot!\n\n"
         "You can start by using the available commands or buttons below."
     )
-    else:
-    # Send welcome back message to an existing user
-      welcome_message = (
-        f"Hello {message.from_user.first_name}, welcome back to the bot!\n\n"
-        "You can start by using the available commands or buttons below."
-    )
- 
-    await client.send_message(message.from_user.id, welcome_message)
-
-        # Prepare inline keyboard for individual users
-    if len(message.command) != 2:
-        if PREMIUM_AND_REFERAL_MODE == True:
+        if len(message.command) != 2:
+         if PREMIUM_AND_REFERAL_MODE == True:
             buttons = [[
                 InlineKeyboardButton('⤬ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ ⤬', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
             ],[
@@ -102,22 +92,63 @@ async def start(client, message):
             ],[
                 InlineKeyboardButton('✇ Jᴏɪɴ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ ✇', url=CHNL_LNK)
             ]]
-        else:
+         else:
             buttons = [[
                 
-                InlineKeyboardButton('✇ Jᴏɪɴ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ ✇', url=CHNL_LNK)
+                InlineKeyboardButton('✇ Jᴏɪɴ Uᴘᴅᴀᴛᴇs ɴɴᴇʟ ✇', url=CHNL_LNK)
             ]]
-        reply_markup = InlineKeyboardMarkup(buttons)
-        m=await message.reply_sticker("CAACAgUAAxkBAAIGBGaIQ3GTvjPRwI1B_lFMKU-SFBSqAAIhAAPBJDExrJTo8r6ffCUeBA") 
-        await asyncio.sleep(1)
-        await m.delete()
-        await message.reply_photo(
+         reply_markup = InlineKeyboardMarkup(buttons)
+         m=await message.reply_sticker("CAACAgUAAxkBAAIGBGaIQ3GTvjPRwI1B_lFMKU-SFBSqAAIhAAPBJDExrJTo8r6ffCUeBA") 
+         await asyncio.sleep(1)
+         await m.delete()
+         await message.reply_photo(
             photo=random.choice(PICS),
             caption=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
-        return
+         return
+    else:
+    # Send welcome back message to an existing user
+      welcome_message = (
+        f"Hello {message.from_user.first_name}, welcome back to the bot!\n\n"
+        "You can start by using the available commands or buttons below."
+    )
+        if len(message.command) != 2:
+         if PREMIUM_AND_REFERAL_MODE == True:
+            buttons = [[
+                InlineKeyboardButton('⤬ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ ⤬', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+            ],[
+                InlineKeyboardButton('Eᴀʀɴ Mᴏɴᴇʏ 💸', callback_data="shortlink_info"),
+                InlineKeyboardButton('⌬ Mᴏᴠɪᴇ Gʀᴏᴜᴘ', url=GRP_LNK)
+            ],[
+                InlineKeyboardButton('〄 Hᴇʟᴘ', callback_data='help'),
+                InlineKeyboardButton('⍟ Aʙᴏᴜᴛ', callback_data='about')
+            ],[
+                InlineKeyboardButton('🔻 ɢᴇᴛ ғʀᴇᴇ/ᴘᴀɪᴅ sᴜʙsᴄʀɪᴘᴛɪᴏɴ 🔻', callback_data='subscription')
+            ],[
+                InlineKeyboardButton('✇ Jᴏɪɴ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ ✇', url=CHNL_LNK)
+            ]]
+         else:
+            buttons = [[
+                
+                InlineKeyboardButton('✇ Jᴏɪɴ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ ✇', url=CHNL_LNK)
+            ]]
+         reply_markup = InlineKeyboardMarkup(buttons)
+         m=await message.reply_sticker("CAACAgUAAxkBAAIGBGaIQ3GTvjPRwI1B_lFMKU-SFBSqAAIhAAPBJDExrJTo8r6ffCUeBA") 
+         await asyncio.sleep(1)
+         await m.delete()
+         await message.reply_photo(
+            photo=random.choice(PICS),
+            caption=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+        )
+         return
+    await client.send_message(message.from_user.id, welcome_message)
+
+        # Prepare inline keyboard for individual users
+    
         
         # Send the welcome message with an optional photo
     

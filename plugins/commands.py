@@ -66,17 +66,26 @@ async def start(client, message):
     
     # Check if the user is interacting for the first time
     if not await db.is_user_exist(message.from_user.id):
-        # Add the user to the database
-        await db.add_user(message.from_user.id, message.from_user.first_name)
-        
-        # Log the new user interaction
-        await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
-        
-        # Send welcome message to the user
-        welcome_message = f"Hello {message.from_user.first_name}, welcome to the bot!\n\nYou can start by using the available commands or buttons below."
+    # Add the user to the database
+    await db.add_user(message.from_user.id, message.from_user.first_name)
+    
+    # Log the new user interaction
+    await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
+    
+    # Send welcome message to the new user
+    welcome_message = (
+        f"Hello {message.from_user.first_name}, welcome to the bot!\n\n"
+        "You can start by using the available commands or buttons below."
+    )
     else:
-        welcome_message = f"Hello {message.from_user.first_name}, welcome bot!\n\nYou can start by using the available commands or buttons below."
-        
+    # Send welcome back message to an existing user
+    welcome_message = (
+        f"Hello {message.from_user.first_name}, welcome back to the bot!\n\n"
+        "You can start by using the available commands or buttons below."
+    )
+ 
+    await client.send_message(message.from_user.id, welcome_message)
+
         # Prepare inline keyboard for individual users
         if PREMIUM_AND_REFERAL_MODE == True:
             buttons = [

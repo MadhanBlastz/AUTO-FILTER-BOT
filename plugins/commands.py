@@ -87,7 +87,37 @@ async def start(client, message):
     await client.send_message(message.from_user.id, welcome_message)
 
         # Prepare inline keyboard for individual users
-        
+    if len(message.command) != 2:
+        if PREMIUM_AND_REFERAL_MODE == True:
+            buttons = [[
+                InlineKeyboardButton('⤬ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ ⤬', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+            ],[
+                InlineKeyboardButton('Eᴀʀɴ Mᴏɴᴇʏ 💸', callback_data="shortlink_info"),
+                InlineKeyboardButton('⌬ Mᴏᴠɪᴇ Gʀᴏᴜᴘ', url=GRP_LNK)
+            ],[
+                InlineKeyboardButton('〄 Hᴇʟᴘ', callback_data='help'),
+                InlineKeyboardButton('⍟ Aʙᴏᴜᴛ', callback_data='about')
+            ],[
+                InlineKeyboardButton('🔻 ɢᴇᴛ ғʀᴇᴇ/ᴘᴀɪᴅ sᴜʙsᴄʀɪᴘᴛɪᴏɴ 🔻', callback_data='subscription')
+            ],[
+                InlineKeyboardButton('✇ Jᴏɪɴ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ ✇', url=CHNL_LNK)
+            ]]
+        else:
+            buttons = [[
+                
+                InlineKeyboardButton('✇ Jᴏɪɴ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ ✇', url=CHNL_LNK)
+            ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        m=await message.reply_sticker("CAACAgUAAxkBAAIGBGaIQ3GTvjPRwI1B_lFMKU-SFBSqAAIhAAPBJDExrJTo8r6ffCUeBA") 
+        await asyncio.sleep(1)
+        await m.delete()
+        await message.reply_photo(
+            photo=random.choice(PICS),
+            caption=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+        )
+        return
         
         # Send the welcome message with an optional photo
     await message.reply_photo(

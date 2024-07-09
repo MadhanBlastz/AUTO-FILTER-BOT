@@ -95,7 +95,7 @@ async def start(client, message):
          else:
             buttons = [[
                 
-                InlineKeyboardButton('✇ Sʜᴀʀᴇ Oɴ WʜᴀᴛsAᴘᴘ ✇', url="https://wa.me/?text=Aʀᴇʏ_Mᴀᴍᴀ_Eᴅɪ_Oᴋᴀsᴀʀɪ_Tʀʏ_Cʜᴇʏ_Rᴀ_Nᴇᴇᴋᴜ_Kᴀᴀᴠᴀʟsɪɴᴀ_Lᴀᴛᴇsᴛ_Mᴏᴠɪᴇs/Wᴇʙsᴇʀɪᴇs/Aɴɪᴍᴇs_Tᴇʟᴜɢᴜ_Lᴏ_Dʜᴏʀᴜᴋᴜᴛʜᴀɪ_Jᴜsᴛ_Tɪᴛʟᴇ_Nᴀᴍᴇ_Sᴇᴀʀᴄʜ_Cʜᴇsᴛᴇ_Cʜᴀʟᴜ_Cʜᴀʟᴀ_Sᴘᴇᴇᴅ_Gᴀ_Dᴏᴡɴʟᴏᴀᴅ_Cʜᴇsᴋᴏᴠᴀᴄᴄʜᴜ_Aʟᴀɢᴇ_3ᴅᴏᴛs_ᴘᴀɪɴᴀ_Cʟɪᴄᴋ_Cʜᴇsɪ_Gᴀʟʟᴇʀʏ_Lᴏᴋɪ_Kᴜᴅᴀ_Sᴀᴠᴇ_Cʜᴇsᴋᴏᴠᴀᴄᴄʜᴜ_https://t.me/File_Search_RoBot")
+                InlineKeyboardButton('✇ Sʜᴀʀᴇ Oɴ WʜᴀᴛsAᴘᴘ ✇', url="https://bit.ly/3LjsIsR")
             ]]
          reply_markup = InlineKeyboardMarkup(buttons)
          m=await message.reply_sticker("CAACAgUAAxkBAAIGBGaIQ3GTvjPRwI1B_lFMKU-SFBSqAAIhAAPBJDExrJTo8r6ffCUeBA") 

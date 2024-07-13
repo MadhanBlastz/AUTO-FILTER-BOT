@@ -74,8 +74,8 @@ async def start(client, message):
     
     # Send welcome message to the new user
       welcome_message = (
-        f"Hello {message.from_user.first_name}, welcome to the bot!\n\n"
-        "You can start by using the available commands or buttons below."
+        f"Hello {message.from_user.first_name}, welcome to the bot!"
+        
     )
       if len(message.command) != 2:
          if PREMIUM_AND_REFERAL_MODE == True:
@@ -111,8 +111,8 @@ async def start(client, message):
     else:
     # Send welcome back message to an existing user
       welcome_message = (
-        f"Hello {message.from_user.first_name}, welcome back to the bot!\n\n"
-        "You can start by using the available commands or buttons below."
+        f"Hello {message.from_user.first_name}, welcome back to the bot!"
+        
     )
       if len(message.command) != 2:
          if PREMIUM_AND_REFERAL_MODE == True:

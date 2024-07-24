@@ -110,7 +110,12 @@ async def start(client, message):
          return
     else:
     # Send welcome back message to an existing user
-      
+    
+    # Send welcome back message to an existing user
+      welcome_message = (
+        f"Hello {message.from_user.first_name}, welcome back to the bot!\n\n"
+     
+    ) 
       if len(message.command) != 2:
          if PREMIUM_AND_REFERAL_MODE == True:
             buttons = [[

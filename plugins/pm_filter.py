@@ -1967,10 +1967,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 reply_markup=InlineKeyboardMarkup(button)
             )
             # Wait for 120 seconds
-                await asyncio.sleep(600)
+            await asyncio.sleep(600)
 
 # Delete the message
-                await msg.delete()
+            await msg.delete()
         except Exception as e:
             print(e)  # print the error message
             await query.answer(f"☣something went wrong sweetheart\n\n{e}", show_alert=True)

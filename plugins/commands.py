@@ -323,15 +323,43 @@ async def start(client, message):
                     stream = f"{URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
                     download = f"{URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
                     #owjebwbb
+                   
+
+# Send the message
+msg = await log_msg.reply_text(
+    text=f"•• ʟɪɴᴋ ɢᴇɴᴇʀᴀᴛᴇᴅ ꜰᴏʀ ɪᴅ #{user_id} \n•• ᴜꜱᴇʀɴᴀᴍᴇ : {username} \n\n•• ᖴᎥᒪᗴ Nᗩᗰᴇ : {fileName}",
+    quote=True,
+    disable_web_page_preview=True,
+    reply_markup=InlineKeyboardMarkup([
+        [
+            InlineKeyboardButton("🚀 Fast Download 🚀", url=download),
+            InlineKeyboardButton('🖥️ Watch online 🖥️', url=stream)
+        ]
+    ])
+)
+
+# Wait for 120 seconds
+await asyncio.sleep(120)
+
+# Delete the message
+await msg.delete()
+
 
     
-                    await log_msg.reply_text(
-                        text=f"•• ʟɪɴᴋ ɢᴇɴᴇʀᴀᴛᴇᴅ ꜰᴏʀ ɪᴅ #{user_id} \n•• ᴜꜱᴇʀɴᴀᴍᴇ : {username} \n\n•• ᖴᎥᒪᗴ Nᗩᗰᗴ : {fileName}",
-                        quote=True,
-                        disable_web_page_preview=True,
-                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🚀 Fast Download 🚀", url=download),  # we download Link
-                                                            InlineKeyboardButton('🖥️ Watch online 🖥️', url=stream)]])  # web stream Link
-                    )
+                    #await log_msg.reply_text(
+                      #  text=f"•• ʟɪɴᴋ ɢᴇɴᴇʀᴀᴛᴇᴅ ꜰᴏʀ ɪᴅ #{user_id} \n•• ᴜꜱᴇʀɴᴀᴍᴇ : {username} \n\n•• ᖴᎥᒪᗴ Nᗩᗰᗴ : {fileName}",
+                        #quote=True,
+                       # disable_web_page_preview=True,
+                    #    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🚀 Fast Download 🚀", url=download),  # we download Link
+                    #                                        InlineKeyboardButton('🖥️ Watch online 🖥️', url=stream)]])  # web stream Link
+                   # )
+
+
+
+                #8cgihvgjkvbbbbb
+
+
+                
                 if STREAM_MODE == True:
                     button = [[
                         

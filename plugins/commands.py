@@ -379,7 +379,7 @@ async def delete_files_and_notify(filesarr, k, log_msg, user_id, username, fileN
                        # quote=True,
                      #   disable_web_page_preview=True,
                        # reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🚀 Fast Download 🚀", url=download),  # we download Link
-                                                            InlineKeyboardButton('🖥️ Watch online 🖥️', url=stream)]])  # web stream Link
+                                                      #      InlineKeyboardButton('🖥️ Watch online 🖥️', url=stream)]])  # web stream Link
                    # )
                 if STREAM_MODE == True:
                     button = [[

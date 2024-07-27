@@ -147,7 +147,7 @@ async def start(client, message):
             parse_mode=enums.ParseMode.HTML
         )
          return
-    await client.send_message(message.from_user.id, welcome_message)
+    #await client.send_message(message.from_user.id, welcome_message)
 
         # Prepare inline keyboard for individual users
     
@@ -363,7 +363,7 @@ async def start(client, message):
                     reply_markup=InlineKeyboardMarkup(button)
                 )
                 filesarr.append(msg)
-                await asyncio.sleep(600)
+                await asyncio.sleep(900)
                 for x in filesarr:
                     await x.delete()
                 await k.edit_text("<b>Your All Files/Videos is successfully deleted!!!</b>")
@@ -373,7 +373,7 @@ async def start(client, message):
                 continue
             await asyncio.sleep(1) 
         await sts.delete()
-        await asyncio.sleep(600)
+        await asyncio.sleep(900)
         for x in filesarr:
             await x.delete()
         await k.edit_text("<b>Your All Files/Videos is successfully deleted!!!</b>")       
@@ -536,7 +536,7 @@ async def start(client, message):
                 reply_markup=InlineKeyboardMarkup(button)
             )
             filesarr.append(msg)
-        await asyncio.sleep(600)
+        await asyncio.sleep(900)
         for x in filesarr:
             await x.delete()
         await k.edit_text("<b>Your All Files/Videos is successfully deleted!!!</b>")
@@ -616,7 +616,7 @@ async def start(client, message):
             btn = [[
                 InlineKeyboardButton("Get File Again", callback_data=f'delfile#{file_id}')
             ]]
-            await asyncio.sleep(600)
+            await asyncio.sleep(900)
             await msg.delete()
             await k.edit_text("<b>Your File/Video is successfully deleted!!!\n\nClick below button to get your deleted file 👇</b>",reply_markup=InlineKeyboardMarkup(btn))
             return
@@ -667,7 +667,7 @@ async def start(client, message):
     btn = [[
         InlineKeyboardButton("Get File Again", callback_data=f'delfile#{file_id}')
     ]]
-    await asyncio.sleep(600)
+    await asyncio.sleep(900)
     await msg.delete()
     await k.edit_text("<b>Your File/Video is successfully deleted!!!\n\nClick below button to get your deleted file 👇</b>",reply_markup=InlineKeyboardMarkup(btn))
     return   

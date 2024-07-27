@@ -1971,6 +1971,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 # Delete the message
             await msg.delete()
+            
+            await client.send_message(message.from_user.id, welcome_message)
         except Exception as e:
             print(e)  # print the error message
             await query.answer(f"☣something went wrong sweetheart\n\n{e}", show_alert=True)

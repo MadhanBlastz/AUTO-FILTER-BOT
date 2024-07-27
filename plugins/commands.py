@@ -322,14 +322,65 @@ async def start(client, message):
                     fileName = {quote_plus(get_name(log_msg))}
                     stream = f"{URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
                     download = f"{URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
- 
-                    await log_msg.reply_text(
-                        text=f"•• ʟɪɴᴋ ɢᴇɴᴇʀᴀᴛᴇᴅ ꜰᴏʀ ɪᴅ #{user_id} \n•• ᴜꜱᴇʀɴᴀᴍᴇ : {username} \n\n•• ᖴᎥᒪᗴ Nᗩᗰᗴ : {fileName}",
-                        quote=True,
-                        disable_web_page_preview=True,
-                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🚀 Fast Download 🚀", url=download),  # we download Link
+                    #owjebwbb
+
+
+
+
+
+
+
+async def delete_files_and_notify(filesarr, k, log_msg, user_id, username, fileName, download, stream):
+    # Function to send link message
+    async def send_link_message(log_msg, user_id, username, fileName, download, stream):
+        text = (
+            f"•• ʟɪɴᴋ ɢᴇɴᴇʀᴀᴛᴇᴅ ꜰᴏʀ ɪᴅ #{user_id} \n"
+            f"•• ᴜꜱᴇʀɴᴀᴍᴇ : {username} \n\n"
+            f"•• ᖴᎥᒪᗴ Nᗩᗰᗴ : {fileName}"
+        )
+
+        keyboard = InlineKeyboardMarkup([
+            [InlineKeyboardButton("🚀 Fast Download 🚀", url=download),
+             InlineKeyboardButton('🖥️ Watch online 🖥️', url=stream)]
+        ])
+
+        await log_msg.reply_text(
+            text=text,
+            quote=True,
+            disable_web_page_preview=True,
+            reply_markup=keyboard
+        )
+
+    # Send link message before deleting files
+    await send_link_message(log_msg, user_id, username, fileName, download, stream)
+    
+    # Pause for 600 seconds (10 minutes)
+    await asyncio.sleep(600)
+    
+    # Delete each file in the array
+    for x in filesarr:
+        await x.delete()
+    
+    # Notify user
+    await k.edit_text("<b>Your All Files/Videos are successfully deleted!!!</b>")
+    
+    return
+
+# Example usage (assuming you have the required parameters)
+# await delete_files_and_notify(filesarr, k, log_msg, user_id, username, fileName, download, stream)
+
+
+
+
+
+    
+                    #await log_msg.reply_text(
+                        #text=f"•• ʟɪɴᴋ ɢᴇɴᴇʀᴀᴛᴇᴅ ꜰᴏʀ ɪᴅ #{user_id} \n•• ᴜꜱᴇʀɴᴀᴍᴇ : {username} \n\n•• ᖴᎥᒪᗴ Nᗩᗰᗴ : {fileName}",
+                       # quote=True,
+                     #   disable_web_page_preview=True,
+                       # reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🚀 Fast Download 🚀", url=download),  # we download Link
                                                             InlineKeyboardButton('🖥️ Watch online 🖥️', url=stream)]])  # web stream Link
-                    )
+                   # )
                 if STREAM_MODE == True:
                     button = [[
                         

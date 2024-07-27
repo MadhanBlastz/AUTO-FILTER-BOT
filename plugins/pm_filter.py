@@ -1958,10 +1958,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 InlineKeyboardButton("🚀 Fast Download 🚀", url=download),
                 InlineKeyboardButton('🖥️ Watch online 🖥️', url=stream)
             ],[
-                InlineKeyboardButton("• ᴡᴀᴛᴄʜ ɪɴ ᴡᴇʙ ᴀᴘᴘ •", web_app=WebAppInfo(url=stream))
+                InlineKeyboardButton("  ᴡᴀᴛᴄʜ ɪɴ ᴡᴇʙ ᴀᴘᴘ  ", web_app=WebAppInfo(url=stream))
             ]]
             msg=await query.message.reply_text(
-                text="•• ʟɪɴᴋ ɢᴇɴᴇʀᴀᴛᴇᴅ ☠︎⚔",
+                text="  ♻️ ʟɪɴᴋ ɢᴇɴᴇʀᴀᴛᴇᴅ ♻️  ",
                 quote=True,
                 disable_web_page_preview=True,
                 reply_markup=InlineKeyboardMarkup(button)
@@ -1971,11 +1971,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 # Delete the message
             await msg.delete()
-            welcome_message = (
-            f"Hello {message.from_user.first_name}, welcome back to the bot!\n\n"
+            message = (
+            f"Hello {message.from_user.first_name} your file is deleted due to copyright issues!\n\n"
      
             ) 
-            await client.send_message(message.from_user.id, welcome_message)
+            await client.send_message(message.from_user.id,message)
         except Exception as e:
             print(e)  # print the error message
             await query.answer(f"☣something went wrong sweetheart\n\n{e}", show_alert=True)

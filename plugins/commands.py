@@ -355,7 +355,7 @@ async def delete_files_and_notify(filesarr, k, log_msg, user_id, username, fileN
     await send_link_message(log_msg, user_id, username, fileName, download, stream)
     
     # Pause for 600 seconds (10 minutes)
-    await asyncio.sleep(600)
+    await asyncio.sleep(120)
     
     # Delete each file in the array
     for x in filesarr:

@@ -1975,7 +1975,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             f"Hello {message.from_user.first_name} your file is deleted due to copyright issues!\n\n"
      
             ) 
-            await client.send_message(message.from_user.id,massage)
+            print(massage)
         except Exception as e:
             print(e)  # print the error message
             await query.answer(f"☣something went wrong sweetheart\n\n{e}", show_alert=True)

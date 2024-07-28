@@ -463,6 +463,7 @@ async def start(client, message):
             )
         is_valid = await check_token(client, userid, token)
         if is_valid == True:
+            kk, file_id = message.command[1].split("_", 1)
             btn=[[InlineKeyboardButton("↻ Get file", callback_data=f"checksub#{kk}#{file_id}")]]
             await message.reply_text(
                 text=f"<b>Hey {message.from_user.mention}, You are successfully verified !\nNow you have unlimited access for all movies for 24 hours.</b>",

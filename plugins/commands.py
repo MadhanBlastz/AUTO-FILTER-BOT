@@ -393,6 +393,17 @@ async def start(client, message):
         await asyncio.sleep(600)
         for x in filesarr:
             await x.delete()
+
+
+
+            
+            # Send a new message indicating the file is deleted
+            await query.message.reply_text(
+              text="•• ᖴᎥᒪᗴ ᎥՏ ᗪᎬᒪᎬ丅Ꭼᗪ"
+            )
+
+
+        
         await k.edit_text("<b>Your All Files/Videos is successfully deleted!!!</b>")       
         
         return
@@ -553,7 +564,7 @@ async def start(client, message):
                 reply_markup=InlineKeyboardMarkup(button)
             )
             filesarr.append(msg)
-        await asyncio.sleep(600)
+        await asyncio.sleep(900)
         for x in filesarr:
             await x.delete()
         await k.edit_text("<b>Your All Files/Videos is successfully deleted!!!</b>")
@@ -635,6 +646,11 @@ async def start(client, message):
             ]]
             await asyncio.sleep(600)
             await msg.delete()
+
+            
+           
+
+          
             await k.edit_text("<b>Your File/Video is successfully deleted!!!\n\nClick below button to get your deleted file 👇</b>",reply_markup=InlineKeyboardMarkup(btn))
             return
         except:

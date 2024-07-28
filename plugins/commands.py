@@ -464,10 +464,13 @@ async def start(client, message):
         is_valid = await check_token(client, userid, token)
         if is_valid == True:
             await message.reply_text(
-                text=f"<b>Hey {message.from_user.mention}, You are successfully verified !\nNow you have unlimited access for all movies for 24hours.</b>",
+                text=f"<b>Hey {message.from_user.mention}, You are successfully verified !\nNow you have unlimited access for all movies for 24 hours.</b>",
                 protect_content=True
+                btn=[[InlineKeyboardButton("↻ Tʀʏ Aɢᴀɪɴ", url=f"https://t.me/{temp.U_NAME}?start={message.command[1]}")]]
+                reply_markup=InlineKeyboardMarkup(btn)
             )
             await verify_user(client, userid, token)
+            
         else:
             return await message.reply_text(
                 text="<b>Invalid link or Expired link !</b>",

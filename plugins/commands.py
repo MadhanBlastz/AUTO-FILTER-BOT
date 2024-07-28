@@ -649,7 +649,7 @@ async def start(client, message):
 
             # Send a new message indicating the file is deleted
             await message.reply_text(
-              text="•• ᖴᎥᒪᗴ ᎥՏ ᗪᎬᒪᎬ丅Ꭼᗪ"
+              text="Yᴏᴜʀ ғɪʟᴇ ɪs ᴅᴇʟᴇᴛᴇᴅ ᴛᴏ ᴀᴠᴏɪᴅ ᴄᴏᴘʏʀɪɢʜᴛ©️ ɪssᴜᴇs"
             )
            
 
@@ -707,7 +707,7 @@ async def start(client, message):
     await msg.delete()
     # Send a new message indicating the file is deleted
     await message.reply_text(
-    text="•• ᖴᎥᒪᗴ ᎥՏ ᗪᎬᒪᎬ丅Ꭼᗪ"
+    text="Yᴏᴜʀ ғɪʟᴇ ɪs ᴅᴇʟᴇᴛᴇᴅ ᴛᴏ ᴀᴠᴏɪᴅ ᴄᴏᴘʏʀɪɢʜᴛ©️ ɪssᴜᴇs"
      )
     await k.edit_text("<b>Your File/Video is successfully deleted!!!\n\nClick below button to get your deleted file 👇</b>",reply_markup=InlineKeyboardMarkup(btn))
     return   

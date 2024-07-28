@@ -1972,7 +1972,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 # Delete the message
             await msg.delete()   
             # Send a new message indicating the file is deleted
-            await log_msg.reply_text(
+            await query.message.reply_text(
               text="•• ᖴᎥᒪᗴ ᎥՏ ᗪᎬᒪᎬ丅Ꭼᗪ"
             )
 

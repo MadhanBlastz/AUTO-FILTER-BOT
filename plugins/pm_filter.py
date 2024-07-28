@@ -1971,7 +1971,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 # Delete the message
             await msg.delete()   
-            print("massage")
+            # Send a new message indicating the file is deleted
+            await log_msg.reply_text(
+              text="•• ᖴᎥᒪᗴ ᎥՏ ᗪᎬᒪᎬ丅Ꭼᗪ"
+            )
+
+
         except Exception as e:
             print(e)  # print the error message
             await query.answer(f"☣something went wrong sweetheart\n\n{e}", show_alert=True)

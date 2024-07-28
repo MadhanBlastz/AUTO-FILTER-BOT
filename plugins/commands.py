@@ -466,9 +466,7 @@ async def start(client, message):
             await message.reply_text(
                 text=f"<b>Hey {message.from_user.mention}, You are successfully verified !\nNow you have unlimited access for all movies for 24 hours.</b>",
                 protect_content=True,
-                reply_markup=InlineKeyboardMarkup(
-                       
-                        [InlineKeyboardButton("↻ Tʀʏ Aɢᴀɪɴ", callback_data=f"checksub#{kk}#{file_id}")]))
+            )
                     
    
         
@@ -655,7 +653,8 @@ async def start(client, message):
 
             # Send a new message indicating the file is deleted
             await message.reply_text(
-              text="Yᴏᴜʀ ғɪʟᴇ ɪs ᴅᴇʟᴇᴛᴇᴅ ᴛᴏ ᴀᴠᴏɪᴅ ᴄᴏᴘʏʀɪɢʜᴛ©️ ɪssᴜᴇs"
+              text="Yᴏᴜʀ ғɪʟᴇ ɪs ᴅᴇʟᴇᴛᴇᴅ ᴛᴏ ᴀᴠᴏɪᴅ ᴄᴏᴘʏʀɪɢʜᴛ©️ ɪssᴜᴇs",
+              reply_markup=InlineKeyboardMarkup(button)
             )
            
 

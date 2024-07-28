@@ -380,7 +380,7 @@ async def start(client, message):
                     reply_markup=InlineKeyboardMarkup(button)
                 )
                 filesarr.append(msg)
-                await asyncio.sleep(600)
+                await asyncio.sleep(900)
                 for x in filesarr:
                     await x.delete()
                 await k.edit_text("<b>Your All Files/Videos is successfully deleted!!!</b>")
@@ -390,7 +390,7 @@ async def start(client, message):
                 continue
             await asyncio.sleep(1) 
         await sts.delete()
-        await asyncio.sleep(600)
+        await asyncio.sleep(900)
         for x in filesarr:
             await x.delete()
 
@@ -398,7 +398,7 @@ async def start(client, message):
 
             
             # Send a new message indicating the file is deleted
-            await query.message.reply_text(
+            await msg.message.reply_text(
               text="•• ᖴᎥᒪᗴ ᎥՏ ᗪᎬᒪᎬ丅Ꭼᗪ"
             )
 
@@ -647,7 +647,10 @@ async def start(client, message):
             await asyncio.sleep(600)
             await msg.delete()
 
-            
+            # Send a new message indicating the file is deleted
+            await message.reply_text(
+              text="•• ᖴᎥᒪᗴ ᎥՏ ᗪᎬᒪᎬ丅Ꭼᗪ"
+            )
            
 
           
@@ -655,7 +658,7 @@ async def start(client, message):
             return
         except:
             pass
-        return await message.reply('No such file exist.')
+        return await message.reply('No such file exist.') 
     files = files_[0]
     title =f"@File_Search_RoBot  {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), files.file_name.split()))}<b></b>"
     size=get_size(files.file_size)
@@ -702,6 +705,10 @@ async def start(client, message):
     ]]
     await asyncio.sleep(600)
     await msg.delete()
+    # Send a new message indicating the file is deleted
+    await message.reply_text(
+    text="•• ᖴᎥᒪᗴ ᎥՏ ᗪᎬᒪᎬ丅Ꭼᗪ"
+     )
     await k.edit_text("<b>Your File/Video is successfully deleted!!!\n\nClick below button to get your deleted file 👇</b>",reply_markup=InlineKeyboardMarkup(btn))
     return   
 

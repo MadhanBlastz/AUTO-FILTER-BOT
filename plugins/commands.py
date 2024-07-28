@@ -463,7 +463,7 @@ async def start(client, message):
             )
         is_valid = await check_token(client, userid, token)
         if is_valid == True:
-            btn=[[InlineKeyboardButton("↻ Tʀʏ Aɢᴀɪɴ", url=f"https://t.me/{temp.U_NAME}?start={message.command[1]}")]]
+            btn=[[InlineKeyboardButton("↻ Get file", callback_data=f"checksub#{kk}#{file_id}")]]
             await message.reply_text(
                 text=f"<b>Hey {message.from_user.mention}, You are successfully verified !\nNow you have unlimited access for all movies for 24 hours.</b>",
                 protect_content=True,

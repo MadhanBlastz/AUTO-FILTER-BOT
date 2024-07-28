@@ -470,11 +470,10 @@ async def start(client, message):
                 protect_content=True,
                 
                 reply_markup=InlineKeyboardMarkup(
-                    try:
                         kk, file_id = message.command[1].split("_", 1)
                         btn.append([InlineKeyboardButton("↻ Tʀʏ Aɢᴀɪɴ", callback_data=f"checksub#{kk}#{file_id}")])
-                    except (IndexError, ValueError):
-                        btn.append([InlineKeyboardButton("↻ Tʀʏ Aɢᴀɪɴ", url=f"https://t.me/{temp.U_NAME}?start={message.command[1]}")]))
+                    
+   
             )
             await verify_user(client, userid, token)
             

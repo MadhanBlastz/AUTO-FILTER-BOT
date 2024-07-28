@@ -468,13 +468,12 @@ async def start(client, message):
             await message.reply_text(
                 text=f"<b>Hey {message.from_user.mention}, You are successfully verified !\nNow you have unlimited access for all movies for 24 hours.</b>",
                 protect_content=True,
-                
                 reply_markup=InlineKeyboardMarkup(
                         kk, file_id = message.command[1].split("_", 1)
-                        btn.append([InlineKeyboardButton("↻ Tʀʏ Aɢᴀɪɴ", callback_data=f"checksub#{kk}#{file_id}")])
+                        btn.append([InlineKeyboardButton("↻ Tʀʏ Aɢᴀɪɴ", callback_data=f"checksub#{kk}#{file_id}")])))
                     
    
-            )
+        
             await verify_user(client, userid, token)
             
         else:

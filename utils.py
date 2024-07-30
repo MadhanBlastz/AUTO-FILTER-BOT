@@ -543,22 +543,44 @@ async def get_verify_shorted_link(link, url, api):
         shortzy = Shortzy(api_key=API, base_site=URL)
         link = await shortzy.convert(link)
         return link
-        
+#chatgpt
 async def check_token(bot, userid, token):
     user = await bot.get_users(userid)
     if not await db.is_user_exist(user.id):
         await db.add_user(user.id, user.first_name)
         await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(user.id, user.mention))
-    if user.id in TOKENS.keys():
-        TKN = TOKENS[user.id]
-        if token in TKN.keys():
-            is_used = TKN[token]
-            if is_used == True:
-                return False
-            else:
-                return True
+    
+    if await check_verification(bot, userid):
+        # User is verified and within the 24-hour window
+        if user.id in TOKENS.keys():
+            TKN = TOKENS[user.id]
+            if token in TKN.keys():
+                is_used = TKN[token]
+                if is_used == True:
+                    return False
+                else:
+                    return True
+        else:
+            return False
     else:
         return False
+        
+  #original     
+#async def check_token(bot, userid, token):
+ #   user = await bot.get_users(userid)
+#    if not await db.is_user_exist(user.id):
+    #    await db.add_user(user.id, user.first_name)
+  #      await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(user.id, user.mention))
+#    if user.id in TOKENS.keys():
+    #    TKN = TOKENS[user.id]
+   #     if token in TKN.keys():
+     #       is_used = TKN[token]
+     #       if is_used == True:
+        #        return False
+     #       else:
+     #           return True
+ #   else:
+   #     return False
 
 async def get_token(bot, userid, link):
     user = await bot.get_users(userid)
@@ -575,18 +597,31 @@ async def get_token(bot, userid, link):
     else:
         return str(shortened_verify_url)
 
+#chatgpt
 async def verify_user(bot, userid, token):
     user = await bot.get_users(userid)
     if not await db.is_user_exist(user.id):
         await db.add_user(user.id, user.first_name)
         await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(user.id, user.mention))
     TOKENS[user.id] = {token: True}
-    tz = pytz.timezone('Asia/Kolkata')
+    # Store the verification timestamp
+    VERIFIED[user.id] = datetime.datetime.now()
+    
+#async def verify_user(bot, userid, token):
+    #user = await bot.get_users(userid)
+#    if not await db.is_user_exist(user.id):
+    #    await db.add_user(user.id, user.first_name)
+ #       await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(user.id, user.mention))
+#    TOKENS[user.id] = {token: True}
+  #  tz = pytz.timezone('Asia/Kolkata')
+#   today = date.today()
+  # VERIFIED[user.id] = str(today)
+#chatgpt
+
     #now = datetime.now(tz)
    # VERIFIED[user.id] = str(now)
-    
-    today = date.today()
-    VERIFIED[user.id] = str(today)
+
+ 
    
 
 
@@ -594,6 +629,7 @@ async def verify_user(bot, userid, token):
 
 
 
+#1st
 
 #async def check_verification(bot, userid):
 #    user = await bot.get_users(userid)
@@ -622,24 +658,42 @@ async def verify_user(bot, userid, token):
         # Set the verification time to 24 hours from now
     #    VERIFIED[user.id] = (now + timedelta(hours=24)).strftime('%Y-%m-%d')
     #    return False
-        
+
+#2nd
 async def check_verification(bot, userid):
     user = await bot.get_users(userid)
     if not await db.is_user_exist(user.id):
         await db.add_user(user.id, user.first_name)
         await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(user.id, user.mention))
-    tz = pytz.timezone('Asia/Kolkata')
-    today = date.today()
     if user.id in VERIFIED.keys():
-        EXP = VERIFIED[user.id]
-        years, month, day = EXP.split('-')
-        comp = date(int(years), int(month), int(day))
-        if comp<today:
-            return False
-        else:
+        last_verified = VERIFIED[user.id]
+        now = datetime.datetime.now()
+        # Check if 24 hours have passed
+        if (now - last_verified).total_seconds() < 86400:  # 86400 seconds in 24 hours
             return True
+        else:
+            return False
     else:
-        return False  
+        return False
+        
+   #original     
+#async def check_verification(bot, userid):
+ #   user = await bot.get_users(userid)
+    #if not await db.is_user_exist(user.id):
+  #      await db.add_user(user.id, user.first_name)
+   #     await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(user.id, user.mention))
+  #  tz = pytz.timezone('Asia/Kolkata')
+  #  today = date.today()
+  #  if user.id in VERIFIED.keys():
+  #      EXP = VERIFIED[user.id]
+    #    years, month, day = EXP.split('-')
+      #  comp = date(int(years), int(month), int(day))
+     #   if comp<today:
+       #     return False
+     #   else:
+        #    return True
+ #   else:
+  #      return False  
     
 async def send_all(bot, userid, files, ident, chat_id, user_name, query):
     settings = await get_settings(chat_id)

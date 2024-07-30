@@ -16,8 +16,9 @@ from database.users_chats_db import db
 from database.join_reqs import JoinReqs
 from bs4 import BeautifulSoup
 from shortzy import Shortzy
-from datetime import datetime, timedelta
 import pytz
+from datetime import datetime, timedelta, date
+
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -586,33 +587,43 @@ async def verify_user(bot, userid, token):
 
 
 
+
 async def check_verification(bot, userid):
-    try:
-        user = await bot.get_users(userid)
-        now = datetime.now(pytz.timezone('Asia/Kolkata'))
-
-        if not await db.is_user_exist(user.id):
-            await db.add_user(user.id, user.first_name)
-            await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(user.id, user.mention))
+    user = await bot.get_users(userid)
+    
+    # Check if user exists in the database
+    if not await db.is_user_exist(user.id):
+        await db.add_user(user.id, user.first_name)
+        await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(user.id, user.mention))
+    
+    tz = pytz.timezone('Asia/Kolkata')
+    today = date.today()
+    
+    # Check if user is verified
+    if user.id in VERIFIED.keys():
+        EXP = VERIFIED[user.id]
+        years, month, day = EXP.split('-')
+        comp = date(int(years), int(month), int(day))
         
-        last_verification_time = await db.get_last_verification_time(user.id)
-
-        if last_verification_time:
-            # Check if 24 hours have passed since the last verification
-            if now - last_verification_time < timedelta(hours=24):
-                return True  # Verified within the last 24 hours
+        # Check expiration date
+        if comp < today:
+            return False
+        
+        # Check last verification time
+        last_verification = await db.get_last_verification(user.id)
+        if last_verification:
+            last_verification_time = datetime.fromisoformat(last_verification).astimezone(tz)
+            if datetime.now(tz) - last_verification_time < timedelta(days=1):
+                return True  # Within 24 hours, don't verify again
             else:
-                # Update the verification time
-                await db.set_last_verification_time(user.id, now)
-                return False  # 24 hours have passed, needs re-verification
+                await db.update_last_verification(user.id, datetime.now(tz).isoformat())
+                return False  # Verification allowed as more than 24 hours have passed
         else:
-            # No previous verification record, so this is the first verification
-            await db.set_last_verification_time(user.id, now)
-            return False  # No previous record to compare with
-    except Exception as e:
-        # Log the exception or handle it accordingly
-        print(f"An error occurred: {e}")
-        return False
+            await db.update_last_verification(user.id, datetime.now(tz).isoformat())
+            return False  # Verification allowed as there's no record of last verification
+    else:
+        return False  # User not verified yet
+
         
 #async def check_verification(bot, userid):
     #user = await bot.get_users(userid)

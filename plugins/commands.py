@@ -471,7 +471,8 @@ async def start(client, message):
    
             await verify_user(client, userid, token)
             
-     #   else:
+        else:
+            pass
             #return await message.reply_text(
             #    text="<b>Invalid link or Expired link !</b>",
              #   protect_content=True

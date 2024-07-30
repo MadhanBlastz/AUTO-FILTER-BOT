@@ -10,7 +10,7 @@ from pyrogram import enums
 from pyrogram.errors import *
 from typing import Union
 from Script import script
-from datetime import datetime, date
+
 from typing import List
 from database.users_chats_db import db
 from database.join_reqs import JoinReqs
@@ -605,7 +605,7 @@ async def verify_user(bot, userid, token):
         await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(user.id, user.mention))
     TOKENS[user.id] = {token: True}
     # Store the verification timestamp
-    VERIFIED[user.id] = datetime.datetime.now()
+    VERIFIED[user.id] = datetime.datetime.now().isoformat()
     
 #async def verify_user(bot, userid, token):
     #user = await bot.get_users(userid)

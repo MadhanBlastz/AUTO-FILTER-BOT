@@ -590,24 +590,53 @@ async def verify_user(bot, userid, token):
 
 
 
-        
+
+
 async def check_verification(bot, userid):
     user = await bot.get_users(userid)
+    
+    # Check if the user exists in the database
     if not await db.is_user_exist(user.id):
         await db.add_user(user.id, user.first_name)
         await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(user.id, user.mention))
+    
     tz = pytz.timezone('Asia/Kolkata')
-    today = date.today()
+    now = datetime.now(tz)
+    
     if user.id in VERIFIED.keys():
-        EXP = VERIFIED[user.id]
-        years, month, day = EXP.split('-')
-        comp = date(int(years), int(month), int(day))
-        if comp<today:
-            return False
-        else:
+        # Parse the stored expiration date
+        years, month, day = VERIFIED[user.id].split('-')
+        comp = datetime(int(years), int(month), int(day))
+        
+        # Check if 24 hours have passed since the last verification
+        if now < comp + timedelta(hours=24):
             return True
+        else:
+            # Update the verification time to now
+            VERIFIED[user.id] = now.strftime('%Y-%m-%d')
+            return False
     else:
-        return False  
+        # Set the verification time to 24 hours from now
+        VERIFIED[user.id] = (now + timedelta(hours=24)).strftime('%Y-%m-%d')
+        return False
+        
+#async def check_verification(bot, userid):
+ #   user = await bot.get_users(userid)
+  #  if not await db.is_user_exist(user.id):
+  #      await db.add_user(user.id, user.first_name)
+   #     await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(user.id, user.mention))
+#    tz = pytz.timezone('Asia/Kolkata')
+ #   today = date.today()
+ #   if user.id in VERIFIED.keys():
+      #  EXP = VERIFIED[user.id]
+   #     years, month, day = EXP.split('-')
+    #    comp = date(int(years), int(month), int(day))
+    #    if comp<today:
+       #     return False
+    #    else:
+     #       return True
+  #  else:
+      #  return False  
     
 async def send_all(bot, userid, files, ident, chat_id, user_name, query):
     settings = await get_settings(chat_id)

@@ -1967,7 +1967,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 reply_markup=InlineKeyboardMarkup(button)
             )
             # Wait for 120 seconds
-            await asyncio.sleep(600)
+            await asyncio.sleep(86400)
 
 # Delete the message
             await msg.delete()   

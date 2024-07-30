@@ -588,60 +588,26 @@ async def verify_user(bot, userid, token):
 
 
 
+
+
+        
 async def check_verification(bot, userid):
     user = await bot.get_users(userid)
-    
-    # Check if user exists in the database
     if not await db.is_user_exist(user.id):
         await db.add_user(user.id, user.first_name)
         await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(user.id, user.mention))
-    
     tz = pytz.timezone('Asia/Kolkata')
     today = date.today()
-    
-    # Check if user is verified
     if user.id in VERIFIED.keys():
         EXP = VERIFIED[user.id]
         years, month, day = EXP.split('-')
         comp = date(int(years), int(month), int(day))
-        
-        # Check expiration date
-        if comp < today:
+        if comp<today:
             return False
-        
-        # Check last verification time
-        last_verification = await db.get_last_verification(user.id)
-        if last_verification:
-            last_verification_time = datetime.fromisoformat(last_verification).astimezone(tz)
-            if datetime.now(tz) - last_verification_time < timedelta(days=1):
-                return True  # Within 24 hours, don't verify again
-            else:
-                await db.update_last_verification(user.id, datetime.now(tz).isoformat())
-                return False  # Verification allowed as more than 24 hours have passed
         else:
-            await db.update_last_verification(user.id, datetime.now(tz).isoformat())
-            return False  # Verification allowed as there's no record of last verification
+            return True
     else:
-        return False  # User not verified yet
-
-        
-#async def check_verification(bot, userid):
-    #user = await bot.get_users(userid)
-    #if not await db.is_user_exist(user.id):
-      #  await db.add_user(user.id, user.first_name)
-     #   await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(user.id, user.mention))
- #   tz = pytz.timezone('Asia/Kolkata')
-  #  today = date.today()
-   # if user.id in VERIFIED.keys():
-     #   EXP = VERIFIED[user.id]
-     #   years, month, day = EXP.split('-')
-       # comp = date(int(years), int(month), int(day))
-       # if comp<today:
-     #       return False
-       # else:
-      #      return True
-   # else:
-     #   return False  
+        return False  
     
 async def send_all(bot, userid, files, ident, chat_id, user_name, query):
     settings = await get_settings(chat_id)

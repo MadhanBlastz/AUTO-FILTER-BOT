@@ -627,23 +627,7 @@ async def start(client, message):
                 if verify_status["link"] == "":
                     reply_markup = None
                 await message.reply(f"ʏᴏᴜʀ ᴛᴏᴋᴇɴ sᴜᴄᴄᴇssғᴜʟʟʏ ᴠᴇʀɪғɪᴇᴅ ᴀɴᴅ ᴠᴀʟɪᴅ ғᴏʀ: 𝟸𝟺 ʜᴏᴜʀ", reply_markup=reply_markup, protect_content=False, quote=True)
-            elif verify_status['is_verified']:
-                        reply_markup = InlineKeyboardMarkup(
-                    [[InlineKeyboardButton("• ᴀʙᴏᴜᴛ ᴍᴇ", callback_data="about"),
-                      InlineKeyboardButton("ᴄʟᴏsᴇ •", callback_data="close")]]
-                )
-                await message.reply_text(
-                    text=START2.format(
-                    first=message.from_user.first_name,
-                    last=message.from_user.last_name,
-                    username=None if not message.from_user.username else '@' + message.from_user.username,
-                    mention=message.from_user.mention,
-                    id=message.from_user.id
-                ),
-                reply_markup=reply_markup,
-                disable_web_page_preview=True,
-                quote=True
-            )
+            
 
             else:
                  verify_status = await get_verify_status(id)

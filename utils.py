@@ -601,11 +601,9 @@ async def verify_user(bot, userid, token):
 
 
 #1st
-
-async def check_verification(bot, userid):
+async def check_verification(bot, userid, db, VERIFIED, LOG_CHANNEL, script):
     user = await bot.get_users(userid)
     
-    Check if the user exists in the database
     if not await db.is_user_exist(user.id):
         await db.add_user(user.id, user.first_name)
         await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(user.id, user.mention))
@@ -614,21 +612,18 @@ async def check_verification(bot, userid):
     now = datetime.now(tz)
     
     if user.id in VERIFIED.keys():
-         Parse the stored expiration date
-        years, month, day = VERIFIED[user.id].split('-')
-        comp = datetime(int(years), int(month), int(day))
+        EXP = VERIFIED[user.id]
+        years, month, day = map(int, EXP.split('-'))
+        expiration_date = datetime(years, month, day, tzinfo=tz)
         
-         Check if 24 hours have passed since the last verification
-        if now < comp + timedelta(hours=24):
+        # Check if the current time is within the 24-hour window before the expiration date
+        if now - timedelta(seconds=86400) < expiration_date:
             return True
         else:
-             Update the verification time to now
-            VERIFIED[user.id] = now.strftime('%Y-%m-%d')
             return False
     else:
-         Set the verification time to 24 hours from now
-        VERIFIED[user.id] = (now + timedelta(hours=24)).strftime('%Y-%m-%d')
         return False
+
 
 
         

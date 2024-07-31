@@ -656,7 +656,7 @@ async def start(client, message):
              #           protect_content=True,
              #           reply_markup=InlineKeyboardMarkup(btn)
            #         )
-                 return
+                    return
 
             if STREAM_MODE == True:
                 button = [[

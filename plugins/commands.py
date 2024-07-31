@@ -454,24 +454,24 @@ async def start(client, message):
         return await sts.delete()
 
     elif data.split("-", 1)[0] == "verify":
-    userid = data.split("-", 2)[1]
-    token = data.split("-", 3)[2]
+        userid = data.split("-", 2)[1]
+        token = data.split("-", 3)[2]
         if str(message.from_user.id) != str(userid):
             return await message.reply_text(
-            text="<b>Invalid link or Expired link !</b>",
-            protect_content=True
+              text="<b>Invalid link or Expired link !</b>",
+              protect_content=True
         )
-    is_valid = await check_token(client, userid, token)
+        is_valid = await check_token(client, userid, token)
         if is_valid:
             await message.reply_text(
-            text=f"<b>Hey {message.from_user.mention}, You are successfully verified !\nNow you have unlimited access for all files for 24 hours.\n\nNow Try Again ♻️</b>",
-            protect_content=True
+              text=f"<b>Hey {message.from_user.mention}, You are successfully verified !\nNow you have unlimited access for all files for 24 hours.\n\nNow Try Again ♻️</b>",
+              protect_content=True
         )
             await verify_user(client, userid, token)
         else:
             return await message.reply_text(
-            text="<b>Invalid link or Expired link !</b>",
-            protect_content=True
+              text="<b>Invalid link or Expired link !</b>",
+              protect_content=True
         )
         
    # elif data.split("-", 1)[0] == "verify":

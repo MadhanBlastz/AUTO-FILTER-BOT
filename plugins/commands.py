@@ -630,18 +630,18 @@ async def start(client, message):
             
 
             else:
-                 verify_status = await get_verify_status(id)
-                 if IS_VERIFY and not verify_status['is_verified']:
-                     short_url = f"publicearn.com"
-                     TUT_VID = f"https://t.me/Fileeboxx_bot?start=BQADAQAD2AYAAg5V-Eb8lJ1rFOxWmRYE"
-                     token = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
-                 await update_verify_status(id, verify_token=token, link="")
-                     link = await get_shortlink(SHORTLINK_URL, SHORTLINK_API,f'https://telegram.dog/{client.username}?start=verify_{token}')
-                     btn = [
+                verify_status = await get_verify_status(id)
+                if IS_VERIFY and not verify_status['is_verified']:
+                    short_url = f"publicearn.com"
+                    TUT_VID = f"https://t.me/Fileeboxx_bot?start=BQADAQAD2AYAAg5V-Eb8lJ1rFOxWmRYE"
+                    token = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
+                    await update_verify_status(id, verify_token=token, link="")
+                    link = await get_shortlink(SHORTLINK_URL, SHORTLINK_API,f'https://telegram.dog/{client.username}?start=verify_{token}')
+                    btn = [
                          [InlineKeyboardButton("𝐕𝐞𝐫𝐢𝐟𝐲", url=link)],
                          [InlineKeyboardButton('𝐇𝐨𝐰 𝐓𝐨 𝐕𝐞𝐫𝐢𝐟𝐲', url=TUT_VID)]
-                     ]
-                 await message.reply(f"𝐘𝐨𝐮𝐫 𝐭𝐨𝐤𝐞𝐧 𝐢𝐬 𝐞𝐱𝐩𝐢𝐫𝐞𝐝, 𝐕𝐞𝐫𝐢𝐟𝐲 𝐲𝐨𝐮𝐫 𝐭𝐨𝐤𝐞𝐧 𝐚𝐧𝐝 𝐭𝐫𝐲 𝐚𝐠𝐚𝐢𝐧. \n\n𝐓𝐨𝐤𝐞𝐧 𝐓𝐢𝐦𝐞𝐨𝐮𝐭: {get_exp_time(VERIFY_EXPIRE)}", reply_markup=InlineKeyboardMarkup(btn), protect_content=False, quote=True)
+                    ]
+                    await message.reply(f"𝐘𝐨𝐮𝐫 𝐭𝐨𝐤𝐞𝐧 𝐢𝐬 𝐞𝐱𝐩𝐢𝐫𝐞𝐝, 𝐕𝐞𝐫𝐢𝐟𝐲 𝐲𝐨𝐮𝐫 𝐭𝐨𝐤𝐞𝐧 𝐚𝐧𝐝 𝐭𝐫𝐲 𝐚𝐠𝐚𝐢𝐧. \n\n𝐓𝐨𝐤𝐞𝐧 𝐓𝐢𝐦𝐞𝐨𝐮𝐭: {get_exp_time(VERIFY_EXPIRE)}", reply_markup=InlineKeyboardMarkup(btn), protect_content=False, quote=True)
 
 #ufyuuggh
            # if not await db.has_premium_access(message.from_user.id):

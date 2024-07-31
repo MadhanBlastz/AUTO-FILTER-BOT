@@ -382,7 +382,7 @@ async def start(client, message):
                     reply_markup=InlineKeyboardMarkup(button)
                 )
                 filesarr.append(msg)
-                await asyncio.sleep(900)
+                await asyncio.sleep(3600)
                 for x in filesarr:
                     await x.delete()
                 await k.edit_text("<b>Your All Files/Videos is successfully deleted!!!</b>")
@@ -392,7 +392,7 @@ async def start(client, message):
                 continue
             await asyncio.sleep(1) 
         await sts.delete()
-        await asyncio.sleep(900)
+        await asyncio.sleep(3600)
         for x in filesarr:
             await x.delete()
 
@@ -573,7 +573,7 @@ async def start(client, message):
                 reply_markup=InlineKeyboardMarkup(button)
             )
             filesarr.append(msg)
-        await asyncio.sleep(900)
+        await asyncio.sleep(3600)
         for x in filesarr:
             await x.delete()
         await k.edit_text("<b>Your All Files/Videos is successfully deleted!!!</b>")

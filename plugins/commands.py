@@ -464,7 +464,7 @@ async def start(client, message):
                 text="<b>Invalid link or Expired link !</b>",
                 protect_content=True
             )
-        is_valid = await check_token(client, userid, token)
+        is_valid = await check_token(bot, userid, token, db, LOG_CHANNEL, script, TOKENS)
         if is_valid == True:            
             await message.reply_text(
                 text=f"<b>Hey {message.from_user.mention}, You are successfully verified !\nNow you have unlimited access for all files for 24 hours.\n\nNow Try Again ♻️</b>",

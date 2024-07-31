@@ -545,51 +545,24 @@ async def get_verify_shorted_link(link, url, api):
         return link
 
         
-async def check_token(bot, userid, token, db, LOG_CHANNEL, script, TOKENS):
-    # Retrieve user information
-    user = await bot.get_users(userid)
+
+
     
-    # Check if the user exists in the database
+async def check_token(bot, userid, token):
+    user = await bot.get_users(userid)
     if not await db.is_user_exist(user.id):
         await db.add_user(user.id, user.first_name)
         await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(user.id, user.mention))
-    
-    # Check if the user's tokens are available
-    if user.id in TOKENS:
-        user_tokens = TOKENS[user.id]
-        
-        # Check if the specific token exists for the user
-        if token in user_tokens:
-            is_used = user_tokens[token]
-            if is_used:
-                # Token has been used
-                return False
-            else:
-                # Token has not been used
+    if user.id in TOKENS.keys():
+        TKN = TOKENS[user.id]
+        if token in TKN.keys():
+            is_used = TKN[token]
+            if is_used == True:
                 return True
-        else:
-            # Token does not exist
-            return False
+            else:
+                return True
     else:
-        # User has no tokens
         return False
-
-    
-#async def check_token(bot, userid, token):
-  #  user = await bot.get_users(userid)
-  #  if not await db.is_user_exist(user.id):
-  #      await db.add_user(user.id, user.first_name)
-   #     await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(user.id, user.mention))
-  #  if user.id in TOKENS.keys():
-    #    TKN = TOKENS[user.id]
-    #    if token in TKN.keys():
-       #     is_used = TKN[token]
-     #       if is_used == True:
-      #          return False
-    #        else:
-         #       return True
- #   else:
-     #   return False
 
 async def get_token(bot, userid, link):
     user = await bot.get_users(userid)

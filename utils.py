@@ -558,7 +558,7 @@ async def check_token(bot, userid, token):
         if token in TKN.keys():
             is_used = TKN[token]
             if is_used == True:
-                return True
+                return False
             else:
                 return True
     else:

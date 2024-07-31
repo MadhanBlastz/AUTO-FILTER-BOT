@@ -615,7 +615,7 @@ async def start(client, message):
             IS_VERIFY = os.environ.get("IS_VERIFY", "True")
             TUT_VID = os.environ.get("TUT_VID","")
 
-            elif verify_status = await get_verify_status(id)
+                verify_status = await get_verify_status(id)
                 if verify_status['is_verified'] and VERIFY_EXPIRE < (time.time() - verify_status['verified_time']):
                     await update_verify_status(id, is_verified=False)
 
@@ -627,7 +627,7 @@ async def start(client, message):
                     if verify_status["link"] == "":
                         reply_markup = None
                     await message.reply(f"ʏᴏᴜʀ ᴛᴏᴋᴇɴ sᴜᴄᴄᴇssғᴜʟʟʏ ᴠᴇʀɪғɪᴇᴅ ᴀɴᴅ ᴠᴀʟɪᴅ ғᴏʀ: 𝟸𝟺 ʜᴏᴜʀ", reply_markup=reply_markup, protect_content=False, quote=True)
-                    elif verify_status['is_verified']:
+                elif verify_status['is_verified']:
                             reply_markup = InlineKeyboardMarkup(
                         [[InlineKeyboardButton("• ᴀʙᴏᴜᴛ ᴍᴇ", callback_data="about"),
                           InlineKeyboardButton("ᴄʟᴏsᴇ •", callback_data="close")]]

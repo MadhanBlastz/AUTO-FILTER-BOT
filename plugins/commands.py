@@ -690,7 +690,7 @@ async def start(client, message):
     if f_caption is None:
         f_caption = f"@File_Search_RoBot  {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), files.file_name.split()))}<b></b>"
     if not await db.has_premium_access(message.from_user.id):
-        if not await check_verification(bot, userid, db, client, message.from_user.id,VERIFIED, LOG_CHANNEL, script) and VERIFY == True:
+        if not await check_verification(client, message.from_user.id) and VERIFY == True:
             btn = [[
                 InlineKeyboardButton("Verify", url=await get_token(client, message.from_user.id, f"https://telegram.me/{temp.U_NAME}?start="))
             ],[

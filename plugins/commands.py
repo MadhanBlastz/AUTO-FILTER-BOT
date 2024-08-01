@@ -456,30 +456,32 @@ async def start(client, message):
     
     
 
-    #elif data.split("-", 1)[0] == "verify":
-     #   userid = data.split("-", 2)[1]
-      #  token = data.split("-", 3)[2]
-      #  if str(message.from_user.id) != str(userid):
-      #      return await message.reply_text(
-      #          text="<b>Invalid link or Expired link !</b>",
-      ##          protect_content=True
-       #     )
-      #  is_valid = await check_token(bot, userid, token, db, LOG_CHANNEL, script, TOKENS)
-    ##    if is_valid == True:            
-      #      await message.reply_text(
-       #         text=f"<b>Hey {message.from_user.mention}, You are successfully verified !\nNow you have unlimited access for all files for 24 hours.\n\nNow Try Again ♻️</b>",
-            #    protect_content=True
-        #    
-      #      )
-   
-       #     await verify_user(client, userid, token)
+    elif data.split("-", 1)[0] == "verify":
+        userid = data.split("-", 2)[1]
+        token = data.split("-", 3)[2]
+        if str(message.from_user.id) != str(userid):
+            return await message.reply_text(
+                text="<b>Invalid link or Expired link !</b>",
+                protect_content=True
+            )
+      
+        is_valid = await check_token(bot, userid, token, db, LOG_CHANNEL, script, TOKENS)
+        if is_valid == True:            
+            await message.reply_text(
+                text=f"<b>Hey {message.from_user.mention}, You are successfully verified !\nNow you have unlimited access for all files for 24 hours.\n\nNow Try Again ♻️</b>",
+                protect_content=True
             
-     #   else:
+            )
+   
+            await verify_user(client, userid, token)
+            
+        else:
            
-       #     return await message.reply_text(
-       #         text="<b>Invalid link or Expired link !</b>",
-      #          protect_content=True
-      #      )
+            return await message.reply_text(
+                text="<b>Invalid link or Expired link !</b>",
+      
+                protect_content=True
+            )
     if data.startswith("sendfiles"):
         chat_id = int("-" + file_id.split("-")[1])
         userid = message.from_user.id if message.from_user else None
@@ -606,54 +608,25 @@ async def start(client, message):
     if not files_:
         pre, file_id = ((base64.urlsafe_b64decode(data + "=" * (-len(data) % 4))).decode("ascii")).split("_", 1)
         try:
-            #hc sh bghgg
-            SHORTLINK_URL = os.environ.get("SHORTLINK_URL", "publicearn.com")
-            SHORTLINK_API = os.environ.get("SHORTLINK_API", "149c31b8f172927a3abf62c40f6db21bb79e5d01")
-            VERIFY_EXPIRE = int(os.environ.get('VERIFY_EXPIRE', 86400)) # Add time in seconds
-            IS_VERIFY = os.environ.get("IS_VERIFY", "True")
-            TUT_VID = os.environ.get("TUT_VID","")
-
-            verify_status = await get_verify_status(id)
-            if verify_status['is_verified'] and VERIFY_EXPIRE < (time.time() - verify_status['verified_time']):
-                await update_verify_status(id, is_verified=False)
-
-            if "verify_" in message.text:
-                _, token = message.text.split("_", 1)
-                if verify_status['verify_token'] != token:
-                    return await message.reply("ʏᴏᴜʀ ᴛᴏᴋᴇɴ ɪs ɪɴᴠᴀʟɪᴅ ᴏʀ ᴇxᴘɪʀᴇᴅ. ᴛʀʏ ᴀɢᴀɪɴ ʙʏ ᴄʟɪᴄᴋɪɴɢ /start")
-                await update_verify_status(id, is_verified=True, verified_time=time.time())
-                if verify_status["link"] == "":
-                    reply_markup = None
-                await message.reply(f"ʏᴏᴜʀ ᴛᴏᴋᴇɴ sᴜᴄᴄᴇssғᴜʟʟʏ ᴠᴇʀɪғɪᴇᴅ ᴀɴᴅ ᴠᴀʟɪᴅ ғᴏʀ: 𝟸𝟺 ʜᴏᴜʀ", reply_markup=reply_markup, protect_content=False, quote=True)
             
 
-            else:
-                verify_status = await get_verify_status(id)
-                if IS_VERIFY and not verify_status['is_verified']:
-                    short_url = f"publicearn.com"
-                    TUT_VID = f"https://t.me/Fileeboxx_bot?start=BQADAQAD2AYAAg5V-Eb8lJ1rFOxWmRYE"
-                    token = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
-                    await update_verify_status(id, verify_token=token, link="")
-                    link = await get_shortlink(SHORTLINK_URL, SHORTLINK_API,f'https://telegram.dog/{client.username}?start=verify_{token}')
-                    btn = [
-                         [InlineKeyboardButton("𝐕𝐞𝐫𝐢𝐟𝐲", url=link)],
-                         [InlineKeyboardButton('𝐇𝐨𝐰 𝐓𝐨 𝐕𝐞𝐫𝐢𝐟𝐲', url=TUT_VID)]
-                    ]
-                    await message.reply(f"𝐘𝐨𝐮𝐫 𝐭𝐨𝐤𝐞𝐧 𝐢𝐬 𝐞𝐱𝐩𝐢𝐫𝐞𝐝, 𝐕𝐞𝐫𝐢𝐟𝐲 𝐲𝐨𝐮𝐫 𝐭𝐨𝐤𝐞𝐧 𝐚𝐧𝐝 𝐭𝐫𝐲 𝐚𝐠𝐚𝐢𝐧. \n\n𝐓𝐨𝐤𝐞𝐧 𝐓𝐢𝐦𝐞𝐨𝐮𝐭: {get_exp_time(VERIFY_EXPIRE)}", reply_markup=InlineKeyboardMarkup(btn), protect_content=False, quote=True)
+           # verify_status = await get_verify_status(id)
+           # if verify_status['is_verified'] and VERIFY_EXPIRE < (time.time() - verify_status['verified_time']):
+             #   await update_verify_status(id, is_verified=False)
 
-#ufyuuggh
-           # if not await db.has_premium_access(message.from_user.id):
-             #   if not await check_verification(client, message.from_user.id) and VERIFY == True:
-               #     btn = [[
-             #           InlineKeyboardButton("Verify", url=await get_token(client, message.from_user.id, f"https://telegram.me/{temp.U_NAME}?start="))
-              #      ],[
-             #           InlineKeyboardButton("How To Verify", url=VERIFY_TUTORIAL)
-              #      ]]
-             #       await message.reply_text(
-            #            text="<b>Yᴏᴜʀ ᴛᴏᴋᴇɴ ɪs ᴇxᴘɪʀᴇᴅ, Vᴇʀɪғʏ ʏᴏᴜʀ ᴛᴏᴋᴇɴ ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ. \n\nTᴏᴋᴇɴ Tɪᴍᴇᴏᴜᴛ: 24ʜᴏᴜʀs</b>",
-             #           protect_content=True,
-             #           reply_markup=InlineKeyboardMarkup(btn)
-           #         )
+            
+            if not await db.has_premium_access(message.from_user.id):
+                if not await check_verification(client, message.from_user.id) and VERIFY == True:
+                    btn = [[
+                        InlineKeyboardButton("Verify", url=await get_token(client, message.from_user.id, f"https://telegram.me/{temp.U_NAME}?start="))
+                    ],[
+                        InlineKeyboardButton("How To Verify", url=VERIFY_TUTORIAL)
+                    ]]
+                    await message.reply_text(
+                        text="<b>Yᴏᴜʀ ᴛᴏᴋᴇɴ ɪs ᴇxᴘɪʀᴇᴅ, Vᴇʀɪғʏ ʏᴏᴜʀ ᴛᴏᴋᴇɴ ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ. \n\nTᴏᴋᴇɴ Tɪᴍᴇᴏᴜᴛ: 24ʜᴏᴜʀs</b>",
+                        protect_content=True,
+                        reply_markup=InlineKeyboardMarkup(btn)
+                    )
                     return
 
             if STREAM_MODE == True:

@@ -10,12 +10,13 @@ from pyrogram import enums
 from pyrogram.errors import *
 from typing import Union
 from Script import script
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 from typing import List
 from database.users_chats_db import db
 from database.join_reqs import JoinReqs
 from bs4 import BeautifulSoup
 from shortzy import Shortzy
+
 
 
 logger = logging.getLogger(__name__)
@@ -592,18 +593,40 @@ async def check_verification(bot, userid):
     if not await db.is_user_exist(user.id):
         await db.add_user(user.id, user.first_name)
         await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(user.id, user.mention))
+        
     tz = pytz.timezone('Asia/Kolkata')
     today = date.today()
+    
     if user.id in VERIFIED.keys():
         EXP = VERIFIED[user.id]
         years, month, day = EXP.split('-')
         comp = date(int(years), int(month), int(day))
-        if comp<today:
+        comp_with_extra_time = comp + timedelta(seconds=86400)  # Add 86400 seconds (1 day)
+        
+        if comp_with_extra_time < today:
             return False
         else:
             return True
     else:
-        return False  
+        return False
+
+#async def check_verification(bot, userid):
+   # user = await bot.get_users(userid)
+ #   if not await db.is_user_exist(user.id):
+  #      await db.add_user(user.id, user.first_name)
+ #       await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(user.id, user.mention))
+ #   tz = pytz.timezone('Asia/Kolkata')
+  #  today = date.today()
+  #  if user.id in VERIFIED.keys():
+   #     EXP = VERIFIED[user.id]
+ #       years, month, day = EXP.split('-')
+   #     comp = date(int(years), int(month), int(day))
+    #    if comp<today:
+    #        return False
+    #    else:
+    #        return True
+ #   else:
+     #   return False  
     
 async def send_all(bot, userid, files, ident, chat_id, user_name, query):
     settings = await get_settings(chat_id)

@@ -10,14 +10,12 @@ from pyrogram import enums
 from pyrogram.errors import *
 from typing import Union
 from Script import script
-
+from datetime import datetime, date
 from typing import List
 from database.users_chats_db import db
 from database.join_reqs import JoinReqs
 from bs4 import BeautifulSoup
 from shortzy import Shortzy
-import pytz
-from datetime import datetime, timedelta, date
 
 
 logger = logging.getLogger(__name__)
@@ -579,7 +577,6 @@ async def get_token(bot, userid, link):
     else:
         return str(shortened_verify_url)
 
-
 async def verify_user(bot, userid, token):
     user = await bot.get_users(userid)
     if not await db.is_user_exist(user.id):
@@ -589,24 +586,7 @@ async def verify_user(bot, userid, token):
     tz = pytz.timezone('Asia/Kolkata')
     today = date.today()
     VERIFIED[user.id] = str(today)
-#chatgpt
 
-    #now = datetime.now(tz)
-   # VERIFIED[user.id] = now.isoformat()
-
- 
-   
-
-
-
-
-
-
-
-
-
-        
-   #original     
 async def check_verification(bot, userid):
     user = await bot.get_users(userid)
     if not await db.is_user_exist(user.id):

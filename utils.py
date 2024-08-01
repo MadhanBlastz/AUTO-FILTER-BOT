@@ -587,12 +587,12 @@ async def verify_user(bot, userid, token):
         await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(user.id, user.mention))
     TOKENS[user.id] = {token: True}
     tz = pytz.timezone('Asia/Kolkata')
-    #today = date.today()
-    #VERIFIED[user.id] = str(today)
+    today = date.today()
+    VERIFIED[user.id] = str(today)
 #chatgpt
 
-    now = datetime.now(tz)
-    VERIFIED[user.id] = now.isoformat()
+    #now = datetime.now(tz)
+   # VERIFIED[user.id] = now.isoformat()
 
  
    
@@ -602,51 +602,28 @@ async def verify_user(bot, userid, token):
 
 
 
-#1st
-async def check_verification(bot, userid, db, VERIFIED, LOG_CHANNEL, script):
-    user = await bot.get_users(userid)
-    
-    if not await db.is_user_exist(user.id):
-        await db.add_user(user.id, user.first_name)
-        await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(user.id, user.mention))
-    
-    tz = pytz.timezone('Asia/Kolkata')
-    now = datetime.now(tz)
-    
-    if user.id in VERIFIED.keys():
-        EXP = VERIFIED[user.id]
-        years, month, day = map(int, EXP.split('-'))
-        expiration_date = datetime(years, month, day, tzinfo=tz)
-        
-        # Check if the current time is within the 24-hour window before the expiration date
-        if now - timedelta(seconds=86400) < expiration_date:
-            return True
-        else:
-            return False
-    else:
-        return False
 
 
 
         
    #original     
-#async def check_verification(bot, userid):
- #   user = await bot.get_users(userid)
-    #if not await db.is_user_exist(user.id):
-  #      await db.add_user(user.id, user.first_name)
-   #     await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(user.id, user.mention))
-  #  tz = pytz.timezone('Asia/Kolkata')
-  #  today = date.today()
-  #  if user.id in VERIFIED.keys():
-  #      EXP = VERIFIED[user.id]
-    #    years, month, day = EXP.split('-')
-      #  comp = date(int(years), int(month), int(day))
-     #   if comp<today:
-       #     return False
-     #   else:
-        #    return True
- #   else:
-  #      return False  
+async def check_verification(bot, userid):
+    user = await bot.get_users(userid)
+    if not await db.is_user_exist(user.id):
+        await db.add_user(user.id, user.first_name)
+        await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(user.id, user.mention))
+    tz = pytz.timezone('Asia/Kolkata')
+    today = date.today()
+    if user.id in VERIFIED.keys():
+        EXP = VERIFIED[user.id]
+        years, month, day = EXP.split('-')
+        comp = date(int(years), int(month), int(day))
+        if comp<today:
+            return False
+        else:
+            return True
+    else:
+        return False  
     
 async def send_all(bot, userid, files, ident, chat_id, user_name, query):
     settings = await get_settings(chat_id)

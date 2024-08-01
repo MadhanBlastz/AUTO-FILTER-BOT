@@ -465,7 +465,7 @@ async def start(client, message):
                 protect_content=True
             )
       
-        is_valid = await check_token(bot, userid, token, db, LOG_CHANNEL, script, TOKENS)
+        is_valid = await check_token(bot, userid, token)
         if is_valid == True:            
             await message.reply_text(
                 text=f"<b>Hey {message.from_user.mention}, You are successfully verified !\nNow you have unlimited access for all files for 24 hours.\n\nNow Try Again ♻️</b>",

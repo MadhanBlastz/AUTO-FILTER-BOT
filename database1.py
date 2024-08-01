@@ -1,7 +1,7 @@
 
 import motor.motor_asyncio
 from os import environ
-DB_URI = environ.get('DBURI', "DATABASE_URI=mongodb+srv://Madhan:N0password@cluster0.y0vtta6.mongodb.net/?retryWrites=true&w=majority")
+DB_URI = environ.get('DBURI', "mongodb+srv://Madhan:N0password@cluster0.y0vtta6.mongodb.net/?retryWrites=true&w=majority")
 DB_NAME = environ.get('DB_NAME', "Cluster0")
 
 dbclient = motor.motor_asyncio.AsyncIOMotorClient(DB_URI)

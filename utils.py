@@ -620,16 +620,16 @@ async def check_verification(bot, userid):
             
             return False
         else:
-             Calculate the remaining time until expiry
+             #Calculate the remaining time until expiry
             remaining_days = remaining_time.days
             remaining_seconds = remaining_time.seconds
             hours, remainder = divmod(remaining_seconds, 3600)
             minutes, _ = divmod(remainder, 60)
             
-             Display the remaining time as an alert message
+             #Display the remaining time as an alert message
             alert_message = (f"⚠️ Alert: Your token will expire in "
                              f"{remaining_days} days, {hours} hours, and {minutes} minutes.")
-             Send the alert message first to make it prominent
+             #Send the alert message first to make it prominent
             await bot.send_message(user.id, alert_message)
             
             return True

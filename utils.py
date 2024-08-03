@@ -596,46 +596,34 @@ async def verify_user(bot, userid, token):
 
 
         
+
+# Assuming VERIFIED is a dictionary with user IDs as keys and expiration dates as values
+VERIFIED = {
+    # Example: 12345: '2023-08-03'
+}
+
 async def check_verification(bot, userid):
     user = await bot.get_users(userid)
-    
     if not await db.is_user_exist(user.id):
         await db.add_user(user.id, user.first_name)
         await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(user.id, user.mention))
-    
+        
     tz = pytz.timezone('Asia/Kolkata')
-    today = date.today()
+    now = datetime.now(tz)
     
     if user.id in VERIFIED.keys():
         EXP = VERIFIED[user.id]
-        years, month, day = EXP.split('-')
-        comp = date(int(years), int(month), int(day))
-        comp_with_extra_time = comp + timedelta(seconds=86400)  # Add 86400 seconds (1 day)
+        years, month, day = map(int, EXP.split('-'))
+        comp = datetime(years, month, day, tzinfo=tz)
+        comp_with_extra_time = comp + timedelta(seconds=900)  # Add 900 seconds
         
-        now = datetime.now(tz)
-        expiry_datetime = datetime(int(years), int(month), int(day), tzinfo=tz)
-        remaining_time = expiry_datetime + timedelta(days=1) - now
-
-        if comp_with_extra_time < today:
-            
+        if comp_with_extra_time < now:
             return False
         else:
-             #Calculate the remaining time until expiry
-            remaining_days = remaining_time.days
-            remaining_seconds = remaining_time.seconds
-            hours, remainder = divmod(remaining_seconds, 3600)
-            minutes, _ = divmod(remainder, 60)
-            
-             #Display the remaining time as an alert message
-            alert_message = (f"⚠️ Alert: Your token will expire in "
-                             f"{remaining_days} days, {hours} hours, and {minutes} minutes.")
-             #Send the alert message first to make it prominent
-            await bot.send_message(user.id, alert_message)
-            
             return True
     else:
-        
         return False
+
         
 #async def check_verification(bot, userid):
 #    user = await bot.get_users(userid)

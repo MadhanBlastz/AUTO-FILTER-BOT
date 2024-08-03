@@ -588,8 +588,6 @@ async def verify_user(bot, userid, token):
     today = date.today()
     VERIFIED[user.id] = str(today)
 
-import pytz
-from datetime import date, datetime, timedelta
 
 async def check_verification(bot, userid):
     user = await bot.get_users(userid)
@@ -610,7 +608,7 @@ async def check_verification(bot, userid):
         now = datetime.now(tz).date()
         
         if expiry_date_with_grace < today:
-            
+            await bot.send_message(user.id, "Your token has expired.")
             return False
         else:
             # Calculate the remaining time until expiry
@@ -630,8 +628,9 @@ async def check_verification(bot, userid):
             
             return True
     else:
-        
+        await bot.send_message(user.id, "You are not verified.")
         return False
+
 
         
 #async def check_verification(bot, userid):

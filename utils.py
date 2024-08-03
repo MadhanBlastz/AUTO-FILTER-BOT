@@ -597,32 +597,6 @@ async def verify_user(bot, userid, token):
 
         
 
-# Assuming VERIFIED is a dictionary with user IDs as keys and expiration dates as values
-VERIFIED = {
-    # Example: 12345: '2023-08-03'
-}
-
-async def check_verification(bot, userid):
-    user = await bot.get_users(userid)
-    if not await db.is_user_exist(user.id):
-        await db.add_user(user.id, user.first_name)
-        await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(user.id, user.mention))
-        
-    tz = pytz.timezone('Asia/Kolkata')
-    now = datetime.now(tz)
-    
-    if user.id in VERIFIED.keys():
-        EXP = VERIFIED[user.id]
-        years, month, day = map(int, EXP.split('-'))
-        comp = datetime(years, month, day, tzinfo=tz)
-        comp_with_extra_time = comp + timedelta(seconds=900)  # Add 900 seconds
-        
-        if comp_with_extra_time < now:
-            return False
-        else:
-            return True
-    else:
-        return False
 
         
 #async def check_verification(bot, userid):

@@ -602,6 +602,7 @@ async def verify_user(bot, userid, token):
 
 
 
+
 async def check_verification(bot, userid):
     user = await bot.get_users(userid)
     
@@ -614,22 +615,21 @@ async def check_verification(bot, userid):
     
     if user.id in VERIFIED.keys():
         EXP = VERIFIED[user.id]
-        years, month, day = map(int, EXP.split('-'))
-        expiry_date = date(years, month, day)
-        expiry_date_with_grace = expiry_date + timedelta(days=1)  # Add 1 day
+        years, month, day = EXP.split('-')
+        comp = date(int(years), int(month), int(day))
+        comp_with_extra_time = comp + timedelta(seconds=86400)  # Add 86400 seconds (1 day)
         
-        now = datetime.now(tz).date()
-        
-        if expiry_date_with_grace < today:
+        now = datetime.now(tz)
+        expiry_datetime = datetime(int(years), int(month), int(day), tzinfo=tz)
+        remaining_time = expiry_datetime + timedelta(days=1) - now
+
+        if comp_with_extra_time < today:
             await bot.send_message(user.id, "Your token has expired.")
             return False
         else:
             # Calculate the remaining time until expiry
-            remaining_time = expiry_date_with_grace - now
-            
-            # Get the remaining days, hours, and minutes
             remaining_days = remaining_time.days
-            remaining_seconds = (expiry_date_with_grace - datetime.combine(now, datetime.min.time())).seconds
+            remaining_seconds = remaining_time.seconds
             hours, remainder = divmod(remaining_seconds, 3600)
             minutes, _ = divmod(remainder, 60)
             

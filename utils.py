@@ -609,7 +609,7 @@ async def check_verification(bot, userid):
         remaining_time = expiry_datetime + timedelta(days=1) - now
 
         if comp_with_extra_time < today:
-            await bot.send_message(user.id, "Your token has expired.")
+            
             return False
         else:
             # Calculate the remaining time until expiry
@@ -626,7 +626,7 @@ async def check_verification(bot, userid):
             
             return True
     else:
-        await bot.send_message(user.id, "You are not verified.")
+        
         return False
         
 #async def check_verification(bot, userid):

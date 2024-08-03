@@ -598,7 +598,35 @@ async def verify_user(bot, userid, token):
         
 
 
+
+
+async def check_verification(bot, userid, db, LOG_CHANNEL, script, VERIFIED):
+    user = await bot.get_users(userid)
+    if not await db.is_user_exist(user.id):
+        await db.add_user(user.id, user.first_name)
+        await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(user.id, user.mention))
         
+    tz = pytz.timezone('Asia/Kolkata')
+    today = date.today()
+    
+    if user.id in VERIFIED.keys():
+        EXP = VERIFIED[user.id]
+        years, month, day = EXP.split('-')
+        comp = date(int(years), int(month), int(day))
+        comp_with_extra_time = comp + timedelta(seconds=86400)  # Add 86400 seconds (1 day)
+        
+        expiration_time = comp_with_extra_time.strftime("%Y-%m-%d %H:%M:%S")
+        
+        if comp_with_extra_time < today:
+            await bot.send_message(user.id, f"Your token has expired. Expiration time (with extra time): {expiration_time}")
+            return False
+        else:
+            await bot.send_message(user.id, f"Your token is valid. Expiration time (with extra time): {expiration_time}")
+            return True
+    else:
+        await bot.send_message(user.id, "You are not verified.")
+        return False
+            
 #async def check_verification(bot, userid):
 #    user = await bot.get_users(userid)
 #    if not await db.is_user_exist(user.id):

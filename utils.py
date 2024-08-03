@@ -603,33 +603,36 @@ async def verify_user(bot, userid, token):
 
 
 
+
+
 async def check_verification(bot, userid):
     user = await bot.get_users(userid)
     
     if not await db.is_user_exist(user.id):
         await db.add_user(user.id, user.first_name)
         await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(user.id, user.mention))
-    
+        
     tz = pytz.timezone('Asia/Kolkata')
     today = date.today()
     
     if user.id in VERIFIED.keys():
         EXP = VERIFIED[user.id]
-        years, month, day = EXP.split('-')
-        comp = date(int(years), int(month), int(day))
-        comp_with_extra_time = comp + timedelta(seconds=86400)  # Add 86400 seconds (1 day)
+        years, month, day = map(int, EXP.split('-'))
+        comp = date(years, month, day)
+        comp_with_extra_time = comp + timedelta(days=1)  # Add 1 day
         
-        now = datetime.now(tz)
-        expiry_datetime = datetime(int(years), int(month), int(day), tzinfo=tz)
-        remaining_time = expiry_datetime + timedelta(days=1) - now
-
+        now = datetime.now(tz).date()
+        
         if comp_with_extra_time < today:
             await bot.send_message(user.id, "Your token has expired.")
             return False
         else:
             # Calculate the remaining time until expiry
+            remaining_time = comp_with_extra_time - now
+            
+            # Get the remaining days, hours, and minutes
             remaining_days = remaining_time.days
-            remaining_seconds = remaining_time.seconds
+            remaining_seconds = (comp_with_extra_time - datetime.combine(now, datetime.min.time())).seconds
             hours, remainder = divmod(remaining_seconds, 3600)
             minutes, _ = divmod(remainder, 60)
             

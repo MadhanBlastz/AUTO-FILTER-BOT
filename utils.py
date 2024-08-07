@@ -647,7 +647,7 @@ async def check_verification_0(bot, userid):
         print(f"An error occurred: {e}")
         return False
 #oahabsbsb
-async def check_verification(bot, userid):
+async def check_verification_1(bot, userid):
     try:
         user = await bot.get_users(userid)
         if not await db.is_user_exist(user.id):
@@ -711,23 +711,23 @@ async def check_verification(bot, userid):
  #   else:
   #      return False
 
-#async def check_verification(bot, userid):
-   # user = await bot.get_users(userid)
- #   if not await db.is_user_exist(user.id):
-  #      await db.add_user(user.id, user.first_name)
- #       await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(user.id, user.mention))
- #   tz = pytz.timezone('Asia/Kolkata')
-  #  today = date.today()
-  #  if user.id in VERIFIED.keys():
-   #     EXP = VERIFIED[user.id]
- #       years, month, day = EXP.split('-')
-   #     comp = date(int(years), int(month), int(day))
-    #    if comp<today:
-    #        return False
-    #    else:
-    #        return True
- #   else:
-     #   return False  
+async def check_verification(bot, userid):
+    user = await bot.get_users(userid)
+    if not await db.is_user_exist(user.id):
+        await db.add_user(user.id, user.first_name)
+        await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(user.id, user.mention))
+    tz = pytz.timezone('Asia/Kolkata')
+    today = date.today()
+    if user.id in VERIFIED.keys():
+        EXP = VERIFIED[user.id]
+        years, month, day = EXP.split('-')
+        comp = date(int(years), int(month), int(day))
+        if comp<today:
+            return False
+        else:
+            return True
+    else:
+        return False  
     
 async def send_all(bot, userid, files, ident, chat_id, user_name, query):
     settings = await get_settings(chat_id)

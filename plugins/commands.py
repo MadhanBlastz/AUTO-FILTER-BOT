@@ -659,7 +659,7 @@ async def start(client, message):
 
             # Send a new message indicating the file is deleted
             await message.reply_text(
-              text="Yᴏᴜʀ ғɪʟᴇ ɪs ᴅᴇʟᴇᴛᴇᴅ ᴛᴏ ᴀᴠᴏɪᴅ ᴄᴏᴘʏʀɪɢʜᴛ©️ ɪssᴜᴇs \nFɪʟᴇ ɴᴀᴍᴇ :{title}",
+              text="Yᴏᴜʀ ғɪʟᴇ ɪs ᴅᴇʟᴇᴛᴇᴅ ᴛᴏ ᴀᴠᴏɪᴅ ᴄᴏᴘʏʀɪɢʜᴛ©️ ɪssᴜᴇs \n f"<b>Fɪʟᴇ ɴᴀᴍᴇ : <code>{files.file_name}</code> ",
               reply_markup=InlineKeyboardMarkup(btn)
             )
             
@@ -718,7 +718,7 @@ async def start(client, message):
     await msg.delete()
     # Send a new message indicating the file is deleted
     await message.reply_text(
-    text="Yᴏᴜʀ ғɪʟᴇ ɪs ᴅᴇʟᴇᴛᴇᴅ ᴛᴏ ᴀᴠᴏɪᴅ ᴄᴏᴘʏʀɪɢʜᴛ©️ ɪssᴜᴇs\nFɪʟᴇ ɴᴀᴍᴇ :{title}",
+    text="Yᴏᴜʀ ғɪʟᴇ ɪs ᴅᴇʟᴇᴛᴇᴅ ᴛᴏ ᴀᴠᴏɪᴅ ᴄᴏᴘʏʀɪɢʜᴛ©️ ɪssᴜᴇs\n f"<b>Fɪʟᴇ ɴᴀᴍᴇ : <code>{files.file_name}</code> ",
      
     reply_markup=InlineKeyboardMarkup(btn))
     

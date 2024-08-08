@@ -604,7 +604,7 @@ async def verify_user(bot, userid, token):
 
 
 
-async def check_verification_0(bot, userid):
+async def check_verification(bot, userid):
     try:
         user = await bot.get_users(userid)
         if not await db.is_user_exist(user.id):
@@ -618,7 +618,7 @@ async def check_verification_0(bot, userid):
             EXP = VERIFIED[user.id]
             years, month, day = map(int, EXP.split('-'))
             comp = date(years, month, day)
-            comp_with_extra_time = comp + timedelta(days=1)  # Add 1 day
+            comp_with_extra_time = comp + timedelta(days=6)  # Add 1 day
             
             if comp_with_extra_time >= today:
                 remaining_time = comp_with_extra_time - today
@@ -633,11 +633,11 @@ async def check_verification_0(bot, userid):
                                       f"{seconds_remaining} seconds remaining")
                 
                 # You can send this information to the user or log it
-                await bot.send_message(user.id, f"Your verification is valid for {remaining_time_str}.")
+                #await bot.send_message(user.id, f"Your verification is valid for {remaining_time_str}.")
                 
                 return True
             else:
-                await bot.send_message(user.id, "Your verification has expired.")
+              #  await bot.send_message(user.id, "Your verification has expired.")
                 return False
         else:
             return False
@@ -690,7 +690,7 @@ async def check_verification_1(bot, userid):
         print(f"An error occurred: {e}")
         return False  
         
-async def check_verification(bot, userid):
+async def check_verification_0(bot, userid):
     user = await bot.get_users(userid)
     if not await db.is_user_exist(user.id):
         await db.add_user(user.id, user.first_name)
@@ -703,7 +703,7 @@ async def check_verification(bot, userid):
         EXP = VERIFIED[user.id]
         years, month, day = EXP.split('-')
         comp = date(int(years), int(month), int(day))
-        comp_with_extra_time = comp - timedelta(seconds=68400)  # Add 86400 seconds (1 day)
+        comp_with_extra_time = comp + timedelta(days=6)  # Add 86400 seconds (1 day)
         
         if comp_with_extra_time < today:
             return False

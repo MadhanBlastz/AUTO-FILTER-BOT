@@ -544,7 +544,7 @@ async def start(client, message):
                         InlineKeyboardButton("How To Verify", url=VERIFY_TUTORIAL)
                     ]]
                     await message.reply_text(
-                        text="<b>Yᴏᴜʀ ᴛᴏᴋᴇɴ ɪs ᴇxᴘɪʀᴇᴅ, Vᴇʀɪғʏ ʏᴏᴜʀ ᴛᴏᴋᴇɴ ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ. \n\nTᴏᴋᴇɴ Tɪᴍᴇᴏᴜᴛ: 24ʜᴏᴜʀs</b>",
+                        text="<b>Yᴏᴜʀ ᴛᴏᴋᴇɴ ɪs ᴇxᴘɪʀᴇᴅ, Vᴇʀɪғʏ ʏᴏᴜʀ ᴛᴏᴋᴇɴ ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ. \n\nTᴏᴋᴇɴ Tɪᴍᴇᴏᴜᴛ:  1 ᴡᴇᴇᴋ</b>",
                         protect_content=True,
                         reply_markup=InlineKeyboardMarkup(btn)
                     )
@@ -659,11 +659,10 @@ async def start(client, message):
 
             # Send a new message indicating the file is deleted
             await message.reply_text(
-              text="Yᴏᴜʀ ғɪʟᴇ ɪs ᴅᴇʟᴇᴛᴇᴅ ᴛᴏ ᴀᴠᴏɪᴅ ᴄᴏᴘʏʀɪɢʜᴛ©️ ɪssᴜᴇs",
+              text="Yᴏᴜʀ ғɪʟᴇ ɪs ᴅᴇʟᴇᴛᴇᴅ ᴛᴏ ᴀᴠᴏɪᴅ ᴄᴏᴘʏʀɪɢʜᴛ©️ ɪssᴜᴇs \nFɪʟᴇ ɴᴀᴍᴇ :{filename}",
               reply_markup=InlineKeyboardMarkup(btn)
             )
-            await asyncio.sleep(900)
-            await message.delete()
+            
 
           
             await k.edit_text("<b>Your File/Video is successfully deleted!!!\n\nClick below button to get your deleted file 👇</b>",reply_markup=InlineKeyboardMarkup(btn))
@@ -719,11 +718,10 @@ async def start(client, message):
     await msg.delete()
     # Send a new message indicating the file is deleted
     await message.reply_text(
-    text="Yᴏᴜʀ ғɪʟᴇ ɪs ᴅᴇʟᴇᴛᴇᴅ ᴛᴏ ᴀᴠᴏɪᴅ ᴄᴏᴘʏʀɪɢʜᴛ©️ ɪssᴜᴇs",
+    text="Yᴏᴜʀ ғɪʟᴇ ɪs ᴅᴇʟᴇᴛᴇᴅ ᴛᴏ ᴀᴠᴏɪᴅ ᴄᴏᴘʏʀɪɢʜᴛ©️ ɪssᴜᴇs\nFɪʟᴇ ɴᴀᴍᴇ :{filename}",
      
     reply_markup=InlineKeyboardMarkup(btn))
-    await asyncio.sleep(900)
-    await message.delete()
+    
     await k.edit_text("<b>Your File/Video is successfully deleted!!!\n\nClick below button to get your deleted file 👇</b>",reply_markup=InlineKeyboardMarkup(btn))
     return   
 

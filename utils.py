@@ -688,30 +688,31 @@ async def check_verification_1(bot, userid):
     except Exception as e:
         # Handle exceptions (e.g., log them)
         print(f"An error occurred: {e}")
-        return False            
-#async def check_verification(bot, userid):
- #   user = await bot.get_users(userid)
-#    if not await db.is_user_exist(user.id):
- #       await db.add_user(user.id, user.first_name)
-  #      await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(user.id, user.mention))
+        return False  
         
- #   tz = pytz.timezone('Asia/Kolkata')
- #   today = date.today()
-    
- #   if user.id in VERIFIED.keys():
-  #      EXP = VERIFIED[user.id]
-    #    years, month, day = EXP.split('-')
-  #      comp = date(int(years), int(month), int(day))
-   #     comp_with_extra_time = comp + timedelta(seconds=86400)  # Add 86400 seconds (1 day)
-        
-   #     if comp_with_extra_time < today:
-   #         return False
-   #     else:
-  #          return True
- #   else:
-  #      return False
-
 async def check_verification(bot, userid):
+    user = await bot.get_users(userid)
+    if not await db.is_user_exist(user.id):
+        await db.add_user(user.id, user.first_name)
+        await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(user.id, user.mention))
+        
+    tz = pytz.timezone('Asia/Kolkata')
+    today = date.today()
+    
+    if user.id in VERIFIED.keys():
+        EXP = VERIFIED[user.id]
+        years, month, day = EXP.split('-')
+        comp = date(int(years), int(month), int(day))
+        comp_with_extra_time = comp - timedelta(seconds=68400)  # Add 86400 seconds (1 day)
+        
+        if comp_with_extra_time < today:
+            return False
+        else:
+            return True
+    else:
+        return False
+
+async def check_verification_original(bot, userid):
     user = await bot.get_users(userid)
     if not await db.is_user_exist(user.id):
         await db.add_user(user.id, user.first_name)

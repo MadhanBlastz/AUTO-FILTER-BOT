@@ -544,7 +544,7 @@ async def start(client, message):
                         InlineKeyboardButton("How To Verify", url=VERIFY_TUTORIAL)
                     ]]
                     await message.reply_text(
-                        text="<b>Yᴏᴜʀ ᴛᴏᴋᴇɴ ɪs ᴇxᴘɪʀᴇᴅ, Vᴇʀɪғʏ ʏᴏᴜʀ ᴛᴏᴋᴇɴ ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ. \n\nTᴏᴋᴇɴ Tɪᴍᴇᴏᴜᴛ:  1 ᴡᴇᴇᴋ</b>",
+                        text="<b>Yᴏᴜʀ ᴛᴏᴋᴇɴ ɪs ᴇxᴘɪʀᴇᴅ, Vᴇʀɪғʏ ʏᴏᴜʀ ᴛᴏᴋᴇɴ ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ. \n\nTᴏᴋᴇɴ Tɪᴍᴇᴏᴜᴛ:  1 ᴡᴇᴇᴋ/n/n🅽🅾🆃🅴 : Bᴇᴛᴛᴇʀ ᴛᴏ ᴠᴇʀɪғʏ ɪɴ ᴄʜʀᴏᴍᴇ ʙʀᴏᴡsᴇʀ</b>",
                         protect_content=True,
                         reply_markup=InlineKeyboardMarkup(btn)
                     )
@@ -616,7 +616,7 @@ async def start(client, message):
                         InlineKeyboardButton("How To Verify", url=VERIFY_TUTORIAL)
                     ]]
                     await message.reply_text(
-                        text="<b>Yᴏᴜʀ ᴛᴏᴋᴇɴ ɪs ᴇxᴘɪʀᴇᴅ, Vᴇʀɪғʏ ʏᴏᴜʀ ᴛᴏᴋᴇɴ ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ. \n\nTᴏᴋᴇɴ Tɪᴍᴇᴏᴜᴛ: 1 ᴡᴇᴇᴋ</b>",
+                        text="<b>Yᴏᴜʀ ᴛᴏᴋᴇɴ ɪs ᴇxᴘɪʀᴇᴅ, Vᴇʀɪғʏ ʏᴏᴜʀ ᴛᴏᴋᴇɴ ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ. \n\nTᴏᴋᴇɴ Tɪᴍᴇᴏᴜᴛ: 1 ᴡᴇᴇᴋ/n/n🅽🅾🆃🅴 : Bᴇᴛᴛᴇʀ ᴛᴏ ᴠᴇʀɪғʏ ɪɴ ᴄʜʀᴏᴍᴇ ʙʀᴏᴡsᴇʀ</b>",
                         protect_content=True,
                         reply_markup=InlineKeyboardMarkup(btn)
                     )
@@ -661,7 +661,7 @@ async def start(client, message):
             await message.reply_text(
            #   text="Yᴏᴜʀ ғɪʟᴇ ɪs ᴅᴇʟᴇᴛᴇᴅ ᴛᴏ ᴀᴠᴏɪᴅ ᴄᴏᴘʏʀɪɢʜᴛ©️ ɪssᴜᴇs \n f"<b> 'Fɪʟᴇ ɴᴀᴍᴇ' : <code>{files.file_name}</code> ",
             
-            text = f"Yᴏᴜʀ ғɪʟᴇ ʜᴀs ʙᴇᴇɴ ᴅᴇʟᴇᴛᴇᴅ ᴛᴏ ᴀᴠᴏɪᴅ ᴄᴏᴘʏʀɪɢʜᴛ ɪssᴜᴇs 🍃🗑️\n\n<b>Fɪʟᴇ ɴᴀᴍᴇ : <code>{files.file_name}</code></b>",
+            text = f"➠ Yᴏᴜʀ ғɪʟᴇ ʜᴀs ʙᴇᴇɴ ᴅᴇʟᴇᴛᴇᴅ ᴛᴏ ᴀᴠᴏɪᴅ ᴄᴏᴘʏʀɪɢʜᴛ ɪssᴜᴇs 🍃🗑️\n\n<b><u>Fɪʟᴇ ɴᴀᴍᴇ</u> : <code>{files.file_name}</code></b>",
             reply_markup=InlineKeyboardMarkup(btn)
             )
             
@@ -721,7 +721,7 @@ async def start(client, message):
     # Send a new message indicating the file is deleted
     await message.reply_text(
    # text="Yᴏᴜʀ ғɪʟᴇ ɪs ᴅᴇʟᴇᴛᴇᴅ ᴛᴏ ᴀᴠᴏɪᴅ ᴄᴏᴘʏʀɪɢʜᴛ©️ ɪssᴜᴇs\n f"<b>Fɪʟᴇ ɴᴀᴍᴇ : <code>{files.file_name}</code></b>",
-    text = f"Yᴏᴜʀ ғɪʟᴇ ʜᴀs ʙᴇᴇɴ ᴅᴇʟᴇᴛᴇᴅ ᴛᴏ ᴀᴠᴏɪᴅ ᴄᴏᴘʏʀɪɢʜᴛ ɪssᴜᴇs 🍃🗑️\n\n<b>Fɪʟᴇ ɴᴀᴍᴇ : <code>{files.file_name}</code></b>",
+    text = f"➠ Yᴏᴜʀ ғɪʟᴇ ʜᴀs ʙᴇᴇɴ ᴅᴇʟᴇᴛᴇᴅ ᴛᴏ ᴀᴠᴏɪᴅ ᴄᴏᴘʏʀɪɢʜᴛ ɪssᴜᴇs 🍃🗑️\n\n<b><u>Fɪʟᴇ ɴᴀᴍᴇ</u> : <code>{files.file_name}</code></b>",
        
     reply_markup=InlineKeyboardMarkup(btn))
     

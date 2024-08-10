@@ -94,7 +94,7 @@ async def start(client, message):
          else:
             buttons = [[
                 
-                InlineKeyboardButton('✇ Sʜᴀʀᴇ Oɴ WʜᴀᴛsAᴘᴘ ✇', url="https://bit.ly/3LjsIsR")
+                InlineKeyboardButton('✇ Sʜᴀʀᴇ Oɴ WʜᴀᴛsAᴘᴘ ✇', url="https://wa.me/?text=https://telegram.me/{}?start={}")
             ]]
          reply_markup = InlineKeyboardMarkup(buttons)
          m=await message.reply_sticker("CAACAgUAAxkBAAIGBGaIQ3GTvjPRwI1B_lFMKU-SFBSqAAIhAAPBJDExrJTo8r6ffCUeBA") 

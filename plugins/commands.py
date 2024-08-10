@@ -79,15 +79,11 @@ async def start(client, message):
       if len(message.command) != 2:
          if PREMIUM_AND_REFERAL_MODE == True:
             buttons = [[
-                InlineKeyboardButton('⤬ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ ⤬', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
-            ],[
-                InlineKeyboardButton('Eᴀʀɴ Mᴏɴᴇʏ 💸', callback_data="shortlink_info"),
-                InlineKeyboardButton('⌬ Mᴏᴠɪᴇ Gʀᴏᴜᴘ', url=GRP_LNK)
-            ],[
-                InlineKeyboardButton('〄 Hᴇʟᴘ', callback_data='help'),
-                InlineKeyboardButton('⍟ Aʙᴏᴜᴛ', callback_data='about')
-            ],[
-                InlineKeyboardButton('✇ Sʜᴀʀᴇ Oɴ WʜᴀᴛsAᴘᴘ ✇', url="https://wa.me/?text=https://telegram.me/{}?start={}")
+                
+   
+                
+            
+                InlineKeyboardButton('✨ ɢᴇᴛ ғʀᴇᴇ sᴜʙsᴄʀɪᴘᴛɪᴏɴ ✨', callback_data='subscription')
             ],[
                 InlineKeyboardButton('✇ Jᴏɪɴ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ ✇', url=CHNL_LNK)
             ]]
@@ -118,15 +114,8 @@ async def start(client, message):
       if len(message.command) != 2:
          if PREMIUM_AND_REFERAL_MODE == True:
             buttons = [[
-                InlineKeyboardButton('⤬ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ ⤬', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
-            ],[
-                InlineKeyboardButton('Eᴀʀɴ Mᴏɴᴇʏ 💸', callback_data="shortlink_info"),
-                InlineKeyboardButton('⌬ Mᴏᴠɪᴇ Gʀᴏᴜᴘ', url=GRP_LNK)
-            ],[
-                InlineKeyboardButton('〄 Hᴇʟᴘ', callback_data='help'),
-                InlineKeyboardButton('⍟ Aʙᴏᴜᴛ', callback_data='about')
-            ],[
-                InlineKeyboardButton('🔻 ɢᴇᴛ ғʀᴇᴇ/ᴘᴀɪᴅ sᴜʙsᴄʀɪᴘᴛɪᴏɴ 🔻', callback_data='subscription')
+                
+                InlineKeyboardButton('✨ ɢᴇᴛ ғʀᴇᴇ sᴜʙsᴄʀɪᴘᴛɪᴏɴ ✨', callback_data='subscription')
             ],[
                 InlineKeyboardButton('✇ Jᴏɪɴ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ ✇', url=CHNL_LNK)
             ]]

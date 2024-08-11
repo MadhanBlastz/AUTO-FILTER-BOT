@@ -114,10 +114,11 @@ async def start(client, message):
          if PREMIUM_AND_REFERAL_MODE == True:
             buttons = [[
                 
-                [InlineKeyboardButton('✨ ɢᴇᴛ ғʀᴇᴇ sᴜʙsᴄʀɪᴘᴛɪᴏɴ ✨', callback_data='subscription')],[InlineKeyboardButton('💫 Rᴇғᴇʀ ᴏɴ WʜᴀᴛsAᴘᴘ 💫', url="https://wa.me/?text=https://telegram.me/File_Search_RoBot?start={user_id}")]
-             #   InlineKeyboardButton('💫 Rᴇғᴇʀ ᴏɴ Tᴇʟᴇɢʀᴀᴍ 💫', url="https://t.me/share/url?url=https://telegram.me/File_Search_RoBot?start={user_id}")]
+                InlineKeyboardButton('✨ ɢᴇᴛ ғʀᴇᴇ sᴜʙsᴄʀɪᴘᴛɪᴏɴ ✨', callback_data='subscription')],
+               [InlineKeyboardButton('💫 Rᴇғᴇʀ ᴏɴ WʜᴀᴛsAᴘᴘ 💫', url="https://wa.me/?text=https://telegram.me/File_Search_RoBot?start={user_id}"),
+                InlineKeyboardButton('💫 Rᴇғᴇʀ ᴏɴ Tᴇʟᴇɢʀᴀᴍ 💫', url="https://t.me/share/url?url=https://telegram.me/File_Search_RoBot?start={user_id}")
             
-            ]]
+                ]]       
          else:
             buttons = [[
                 

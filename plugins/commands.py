@@ -115,8 +115,8 @@ async def start(client, message):
             buttons = [[
                 
                 [InlineKeyboardButton('✨ ɢᴇᴛ ғʀᴇᴇ sᴜʙsᴄʀɪᴘᴛɪᴏɴ ✨', callback_data='subscription')],
-                [InlineKeyboardButton('💫 Rᴇғᴇʀ ᴏɴ WʜᴀᴛsAᴘᴘ 💫', url=""),
-                InlineKeyboardButton('💫 Rᴇғᴇʀ ᴏɴ Tᴇʟᴇɢʀᴀᴍ 💫', url="")]
+                [InlineKeyboardButton('💫 Rᴇғᴇʀ ᴏɴ WʜᴀᴛsAᴘᴘ 💫', url="https://wa.me/?text=https://telegram.me/File_Search_RoBot?start={user_id}"),
+                InlineKeyboardButton('💫 Rᴇғᴇʀ ᴏɴ Tᴇʟᴇɢʀᴀᴍ 💫', url="https://t.me/share/url?url=https://telegram.me/File_Search_RoBot?start={user_id}")]
             
             ]]
          else:

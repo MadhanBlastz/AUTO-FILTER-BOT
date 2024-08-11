@@ -112,8 +112,8 @@ async def start(client, message):
     ) 
       if len(message.command) != 2:
          if PREMIUM_AND_REFERAL_MODE == True:
-            user_id = message.from_user.id
-            ABCD = "https://wa.me/?text=https://telegram.me/File_Search_RoBot?start=X-{}".format(user_id)
+           # user_id = message.from_user.id
+         #   ABCD = "https://wa.me/?text=https://telegram.me/File_Search_RoBot?start=X-{}".format(user_id)
             buttons = [[
                 
                 InlineKeyboardButton('✨ ɢᴇᴛ ғʀᴇᴇ sᴜʙsᴄʀɪᴘᴛɪᴏɴ ✨', callback_data='subscription')

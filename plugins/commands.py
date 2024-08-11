@@ -117,7 +117,7 @@ async def start(client, message):
             buttons = [[
                 
                 InlineKeyboardButton('✨ ɢᴇᴛ ғʀᴇᴇ sᴜʙsᴄʀɪᴘᴛɪᴏɴ ✨', callback_data='subscription')],
-               [InlineKeyboardButton('💫 Rᴇғᴇʀ ᴏɴ WʜᴀᴛsAᴘᴘ 💫', url=f"{ABCD}")
+               [InlineKeyboardButton('💫 Rᴇғᴇʀ ᴏɴ WʜᴀᴛsAᴘᴘ 💫', url=ABCD)
               #  InlineKeyboardButton('💫 Rᴇғᴇʀ ᴏɴ Tᴇʟᴇɢʀᴀᴍ 💫', url=f"https://t.me/share/url?url=https://telegram.me/File_Search_RoBot?start={user_id}")
             
                 ]]       

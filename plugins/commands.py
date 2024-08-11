@@ -91,14 +91,14 @@ async def start(client, message):
                 
                 InlineKeyboardButton('✇ Sʜᴀʀᴇ Oɴ WʜᴀᴛsAᴘᴘ ✇', url="https://wa.me/?text=https://telegram.me/{}?start={}")
             ]]
-         reply_markup = InlineKeyboardMarkup(buttons)
+        # reply_markup = InlineKeyboardMarkup(buttons)
          m=await message.reply_sticker("CAACAgUAAxkBAAIGBGaIQ3GTvjPRwI1B_lFMKU-SFBSqAAIhAAPBJDExrJTo8r6ffCUeBA") 
          await asyncio.sleep(1)
          await m.delete()
          await message.reply_photo(
             photo=random.choice(PICS),
             caption=script.START_TXT1.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
-            reply_markup=reply_markup,
+            #reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
          return

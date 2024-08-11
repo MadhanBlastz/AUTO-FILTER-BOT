@@ -2121,12 +2121,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
             parse_mode=enums.ParseMode.HTML
         )
     elif query.data == "subscription":
-        user_id = message.from_user.id
-        ABCDE = "https://t.me/share/url?url=https://telegram.me/File_Search_RoBot?start=X-{}".format(user_id)
-        ABCD = "https://wa.me/?text=https://telegram.me/File_Search_RoBot?start=X-{}".format(user_id)
+     #   user_id = message.from_user.id
+       # ABCDE = "https://t.me/share/url?url=https://telegram.me/File_Search_RoBot?start=X-{}".format(user_id)
+      #  ABCD = "https://wa.me/?text=https://telegram.me/File_Search_RoBot?start=X-{}".format(user_id)
         buttons = [[
-            InlineKeyboardButton('💫 Rᴇғᴇʀ ᴏɴ WʜᴀᴛsAᴘᴘ 💫', url=ABCD)],[
-            InlineKeyboardButton('💫 Rᴇғᴇʀ ᴏɴ Tᴇʟᴇɢʀᴀᴍ 💫', url=ABCDE)
+            InlineKeyboardButton('💫 Rᴇғᴇʀ ᴏɴ WʜᴀᴛsAᴘᴘ 💫', url='ABCD')],[
+            InlineKeyboardButton('💫 Rᴇғᴇʀ ᴏɴ Tᴇʟᴇɢʀᴀᴍ 💫', url='ABCDE')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await client.edit_message_media(

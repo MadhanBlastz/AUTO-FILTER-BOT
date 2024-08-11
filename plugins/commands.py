@@ -112,6 +112,7 @@ async def start(client, message):
     ) 
       if len(message.command) != 2:
          if PREMIUM_AND_REFERAL_MODE == True:
+            user_id = update.message.from_user.id
             buttons = [[
                 
                 InlineKeyboardButton('✨ ɢᴇᴛ ғʀᴇᴇ sᴜʙsᴄʀɪᴘᴛɪᴏɴ ✨', callback_data='subscription')],

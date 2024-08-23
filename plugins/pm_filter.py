@@ -1954,8 +1954,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🚀 Fast Download 🚀", url=download),  # we download Link
                                                     InlineKeyboardButton('🖥️ Watch online 🖥️', url=stream)]])  # web stream Link
             )
-            await asyncio.sleep(600)
-            await log_msg.delete()
+            
             
             
             button = [[
@@ -1971,7 +1970,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 reply_markup=InlineKeyboardMarkup(button)
             )
             # Wait for 120 seconds
+            
             await asyncio.sleep(600)
+            await log_msg.delete()
 
 # Delete the message
             await msg.delete()   

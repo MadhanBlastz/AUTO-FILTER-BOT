@@ -1971,7 +1971,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             )
             # Wait for 120 seconds
             
-            await asyncio.sleep(600)
+            await asyncio.sleep(86400)
             await yo.delete()
             await log_msg.delete()
 

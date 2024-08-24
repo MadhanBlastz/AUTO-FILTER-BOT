@@ -668,7 +668,7 @@ async def start(client, message):
                 InlineKeyboardButton("How To Verify", url=VERIFY_TUTORIAL)
             ]]
             await message.reply_text(
-                text="<b>Yᴏᴜʀ ᴛᴏᴋᴇɴ ɪs ᴇxᴘɪʀᴇᴅ, Vᴇʀɪғʏ ʏᴏᴜʀ ᴛᴏᴋᴇɴ ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ. \n\nTᴏᴋᴇɴ Tɪᴍᴇᴏᴜᴛ: 1 ᴡᴇᴇᴋ</b>",
+                text="<b>Yᴏᴜʀ ᴛᴏᴋᴇɴ ɪs ᴇxᴘɪʀᴇᴅ, Vᴇʀɪғʏ ʏᴏᴜʀ ᴛᴏᴋᴇɴ ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ. \n\n🌐 Bᴇᴛᴛᴇʀ ᴛᴏ ᴠᴇʀɪғʏ ɪɴ ᴄʜʀᴏᴍᴇ ʙʀᴏᴡsᴇʀ.\n\nTᴏᴋᴇɴ Tɪᴍᴇᴏᴜᴛ: 1 ᴡᴇᴇᴋ</b>",
                 protect_content=True,
                 reply_markup=InlineKeyboardMarkup(btn)
             )

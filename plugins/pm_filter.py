@@ -1973,6 +1973,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             
             await asyncio.sleep(600)
             await yo.delete()
+            await log_msg.delete()
 
 # Delete the message
             await msg.delete()   

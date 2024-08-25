@@ -241,7 +241,7 @@ async def check_mongodb_connection(uri):
         logger.error(f"An unexpected error occurred: {e}")
         return False
 
-async def referal_add_user(user_id, ref_user_id):
+async def referal_add_user0(user_id, ref_user_id):
     user_db = mydb[str(user_id)]
     user = {'_id': ref_user_id}
     
@@ -266,7 +266,7 @@ async def referal_add_user(user_id, ref_user_id):
     data = message.command[1]  # Assume the referral code is passed as a second argument
     if data.split("-", 1)[0] == "X":
         user_id = int(data.split("-", 1)[1])
-        vj = await referal_add_user(user_id, message.from_user.id)
+        vj = await referal_add_user0(user_id, message.from_user.id)
         if vj and PREMIUM_AND_REFERAL_MODE:
             await message.reply(f"<b>You have joined using the referral link of user with ID {user_id}\n\nSend /start again to use the bot</b>")
             

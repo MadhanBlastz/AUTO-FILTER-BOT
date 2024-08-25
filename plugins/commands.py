@@ -212,11 +212,11 @@ async def start(client, message):
             parse_mode=enums.ParseMode.HTML
         )
         return
-    if not await db.is_user_exist(message.from_user.id):
-     data = message.command[1]
-     if data.split("-", 1)[0] == "X":
-         user_id = int(data.split("-", 1)[1])
-         vj = await referal_add_user(user_id, message.from_user.id)
+   # if not await db.is_user_exist(message.from_user.id):
+    data = message.command[1]
+    if data.split("-", 1)[0] == "X":
+        user_id = int(data.split("-", 1)[1])
+        vj = await referal_add_user(user_id, message.from_user.id)
          if vj and PREMIUM_AND_REFERAL_MODE == True:
             await message.reply(f"<b>You have joined using the referral link of user with ID {user_id}\n\nSend /start again to use the bot</b>")
             num_referrals = await get_referal_users_count(user_id)

@@ -211,6 +211,56 @@ async def start(client, message):
             parse_mode=enums.ParseMode.HTML
         )
         return
+        
+        logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
+# Replace this with your actual MongoDB URI
+#DATABASE_URI = "mongodb+srv://username:password@cluster0.mongodb.net/mydatabase?retryWrites=true&w=majority"
+
+# Initialize MongoDB Client and Database
+my_client = MongoClient(DATABASE_URI, serverSelectionTimeoutMS=5000)
+mydb = my_client["referal_user"]
+
+async def check_mongodb_connection(uri):
+    try:
+        # Attempt to ping the MongoDB server
+        client = MongoClient(uri, serverSelectionTimeoutMS=5000)
+        client.admin.command('ping')
+        logger.info("MongoDB connection successful")
+        return True
+    except errors.ServerSelectionTimeoutError as err:
+        logger.error("ServerSelectionTimeoutError: Unable to connect to MongoDB server. Check your connection and URI.")
+        logger.error(f"Error details: {err}")
+        return False
+    except errors.ConnectionError as err:
+        logger.error("ConnectionError: Error connecting to MongoDB server.")
+        logger.error(f"Error details: {err}")
+        return False
+    except Exception as e:
+        logger.error(f"An unexpected error occurred: {e}")
+        return False
+
+async def referal_add_user(user_id, ref_user_id):
+    user_db = mydb[str(user_id)]
+    user = {'_id': ref_user_id}
+    
+    if not await check_mongodb_connection(DATABASE_URI):
+        logger.error("Database connection failed. Aborting referral addition.")
+        return False
+
+    try:
+        # Attempt to insert the user document with the ref_user_id as the unique identifier
+        user_db.insert_one(user)
+        logger.info(f"User added with ID: {ref_user_id}")
+        return True
+    except errors.DuplicateKeyError:
+        # Handle the case where the referral user has already been added
+        logger.warning("DuplicateKeyError: User already exists")
+        return False
+    except Exception as e:
+        logger.error(f"An unexpected error occurred while adding referral: {e}")
+        return False
   #  @client.on_message(filters.command('start') & filters.private)
 #async def start_command(client, message):
     data = message.command[1]  # Assume the referral code is passed as a second argument

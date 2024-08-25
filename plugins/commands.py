@@ -218,9 +218,8 @@ async def start(client, message):
         user_id = int(data.split("-", 1)[1])
     
     # Check if the user already exists in the database
-        if await db.is_user_exist(message.from_user.id):
-            await message.reply("You are already registered. Referrals do not apply.")
-        else:
+        if not await db.is_user_exist(message.from_user.id):
+            
             vj = await referal_add_user(user_id, message.from_user.id)
             if vj:
                 await message.reply(f"<b>You have joined using the referral link of user with ID {user_id}\n\nSend /start again to use the bot</b>")
@@ -236,6 +235,9 @@ async def start(client, message):
                         await delete_all_referal_users(user_id)
                         await client.send_message(chat_id=user_id, text=f"<b>You have successfully completed the total referral.\n\nYou have been added to Premium for {REFERAL_PREMIUM_TIME}</b>")
                         return
+        else:
+            await message.reply("You are already registered. Referrals do not apply.")
+    
         
     try:
         pre, file_id = data.split('_', 1)

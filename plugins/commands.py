@@ -218,9 +218,9 @@ async def start(client, message):
         user_id = int(data.split("-", 1)[1])
     
     # Check if the user already exists in the database
-        if await db.is_user_exist(message.from_user.id):
-            await message.reply("You are already registered. Referrals do not apply.")
-            return
+       # if await db.is_user_exist(message.from_user.id):
+        #    await message.reply("You are already registered. Referrals do not apply.")
+        #    return
         
         vj = await referal_add_user(user_id, message.from_user.id)
         if vj:

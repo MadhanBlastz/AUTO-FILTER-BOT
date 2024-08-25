@@ -225,7 +225,7 @@ async def start(client, message):
                 num_referrals = await get_referal_users_count(user_id)
                 await client.send_message(chat_id=user_id, text=f"<b>{message.from_user.mention} started the bot with your referral link\n\nTotal Referrals - {num_referrals}</b>")
                 if num_referrals == REFERAL_COUNT:
-                    time = REFERAL_PREMIUM_TIME       
+                    time = REFERAL_PREMEIUM_TIME       
                     seconds = await get_seconds(time)
                     if seconds > 0:
                         expiry_time = datetime.datetime.now() + datetime.timedelta(seconds=seconds)

@@ -213,82 +213,24 @@ async def start(client, message):
         )
         return
         
-        logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
-
-# Replace this with your actual MongoDB URI
-#DATABASE_URI = "mongodb+srv://username:password@cluster0.mongodb.net/mydatabase?retryWrites=true&w=majority"
-
-# Initialize MongoDB Client and Database
-my_client = MongoClient(DATABASE_URI, serverSelectionTimeoutMS=5000)
-mydb = my_client["referal_user"]
-
-async def check_mongodb_connection(uri):
-    try:
-        # Attempt to ping the MongoDB server
-        client = MongoClient(uri, serverSelectionTimeoutMS=5000)
-        client.admin.command('ping')
-        logger.info("MongoDB connection successful")
-        return True
-    except errors.ServerSelectionTimeoutError as err:
-        logger.error("ServerSelectionTimeoutError: Unable to connect to MongoDB server. Check your connection and URI.")
-        logger.error(f"Error details: {err}")
-        return False
-    except errors.ConnectionError as err:
-        logger.error("ConnectionError: Error connecting to MongoDB server.")
-        logger.error(f"Error details: {err}")
-        return False
-    except Exception as e:
-        logger.error(f"An unexpected error occurred: {e}")
-        return False
-
-async def referal_add_user0(user_id, ref_user_id):
-    user_db = mydb[str(user_id)]
-    user = {'_id': ref_user_id}
-    
-    if not await check_mongodb_connection(DATABASE_URI):
-        logger.error("Database connection failed. Aborting referral addition.")
-        return False
-
-    try:
-        # Attempt to insert the user document with the ref_user_id as the unique identifier
-        user_db.insert_one(user)
-        logger.info(f"User added with ID: {ref_user_id}")
-        return True
-    except errors.DuplicateKeyError:
-        # Handle the case where the referral user has already been added
-        logger.warning("DuplicateKeyError: User already exists")
-        return False
-    except Exception as e:
-        logger.error(f"An unexpected error occurred while adding referral: {e}")
-        return False
-  #  @client.on_message(filters.command('start') & filters.private)
-#async def start_command(client, message):
-    data = message.command[1]  # Assume the referral code is passed as a second argument
+        data = message.command[1]
     if data.split("-", 1)[0] == "X":
         user_id = int(data.split("-", 1)[1])
-        vj = await referal_add_user0(user_id, message.from_user.id)
-        if vj and PREMIUM_AND_REFERAL_MODE:
+        vj = await referal_add_user(user_id, message.from_user.id)
+        if vj and PREMIUM_AND_REFERAL_MODE == True:
             await message.reply(f"<b>You have joined using the referral link of user with ID {user_id}\n\nSend /start again to use the bot</b>")
-            
             num_referrals = await get_referal_users_count(user_id)
-            await client.send_message(
-                chat_id=user_id, 
-                text=f"<b>{message.from_user.mention} started the bot with your referral link\n\nTotal Referrals - {num_referrals}</b>"
-            )
-            
+            await client.send_message(chat_id = user_id, text = "<b>{} start the bot with your referral link\n\nTotal Referals - {}</b>".format(message.from_user.mention, num_referrals))
             if num_referrals == REFERAL_COUNT:
-                seconds = await get_seconds(REFERAL_PREMEIUM_TIME)
+                time = REFERAL_PREMEIUM_TIME       
+                seconds = await get_seconds(time)
                 if seconds > 0:
-                    expiry_time = datetime.now() + timedelta(seconds=seconds)
-                    user_data = {"id": user_id, "expiry_time": expiry_time}
-                    await db.update_user(user_data)
+                    expiry_time = datetime.datetime.now() + datetime.timedelta(seconds=seconds)
+                    user_data = {"id": user_id, "expiry_time": expiry_time} 
+                    await db.update_user(user_data)  # Use the update_user method to update or insert user data
                     await delete_all_referal_users(user_id)
-                    await client.send_message(
-                        chat_id=user_id, 
-                        text=f"<b>You Have Successfully Completed Total Referral.\n\nYou Are Added To Premium For {REFERAL_PREMEIUM_TIME}</b>"
-                    )
-                return
+                    await client.send_message(chat_id = user_id, text = "<b>You Have Successfully Completed Total Referal.\n\nYou Added In Premium For {}</b>".format(REFERAL_PREMEIUM_TIME))
+                    return 
        # else:
           #  await message.reply("Referral not successful or user already referred.")
 

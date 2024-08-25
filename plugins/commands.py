@@ -218,7 +218,8 @@ async def start(client, message):
         user_id = int(data.split("-", 1)[1])
     
     # Check if the user already exists in the database
-        if not await db.is_user_exist(message.from_user.id):
+        user_exists = await db.is_user_exist(message.from_user.id)
+        if not user_exists:
             vj = await referal_add_user(user_id, message.from_user.id)
             if vj and PREMIUM_AND_REFERAL_MODE == True:
                 await message.reply(f"<b>You have joined using the referral link of user with ID {user_id}\n\nSend /start again to use the bot</b>")

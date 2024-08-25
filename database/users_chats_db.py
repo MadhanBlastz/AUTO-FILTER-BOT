@@ -15,7 +15,7 @@ mydb = my_client["referal_user"]
 
 
 
-async def referal_add_user(user_id, ref_user_id):
+async def referal_add_user1(user_id, ref_user_id):
     user_db = mydb[str(user_id)]
     user = {'_id': ref_user_id}
     
@@ -27,7 +27,7 @@ async def referal_add_user(user_id, ref_user_id):
         # Handle the case where the referral user has already been added
         return False
         
-async def referal_add_user1(user_id, ref_user_id):
+async def referal_add_user(user_id, ref_user_id):
     user_db = mydb[str(user_id)]
     user = {'_id': ref_user_id}
     try:

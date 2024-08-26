@@ -80,19 +80,20 @@ class Database:
         'vj_tech': None
     }
     
+    import motor.motor_asyncio
+
+class Database:
     def __init__(self, uri, database_name):
         self._client = motor.motor_asyncio.AsyncIOMotorClient(uri)
         self.db = self._client[database_name]
-        self.col = self.db.users
-        self.col = self.db.userz
-        self.grp = self.db.groups
-        self.users = self.db.uersz
-
+        self.users_col = self.db.users  # Collection for user data
+        self.userz_col = self.db.userz  # Collection for userz data
+        self.groups_col = self.db.groups  # Collection for group data
 
     def new_user(self, id, name):
         return dict(
-            id = id,
-            name = name,
+            id=id,
+            name=name,
             file_id=None,
             caption=None,
             message_command=None,
@@ -103,32 +104,42 @@ class Database:
             ),
         )
 
-
     def new_group(self, id, title):
         return dict(
-            id = id,
-            title = title,
+            id=id,
+            title=title,
             chat_status=dict(
                 is_disabled=False,
                 reason="",
             ),
-            settings=self.default_setgs
+            settings=self.default_setgs  # Ensure `self.default_setgs` is defined elsewhere
         )
-    
+
     async def add_user(self, id, name):
         user = self.new_user(id, name)
-        await self.col.insert_one(user)
-        
+        try:
+            await self.users_col.insert_one(user)  # Add to 'users' collection
+        except Exception as e:
+            print(f"An error occurred while adding a user to 'users': {e}")
+
+    async def is_user_exist(self, id):
+        user = await self.users_col.find_one({'id': int(id)})
+        if user:
+            return True
+        user = await self.userz_col.find_one({'id': int(id)})
+        return bool(user)
+
     async def add_userz(self, id, name):
         user = self.new_user(id, name)
-        await self.col.insert_one(user)
+        try:
+            await self.userz_col.insert_one(user)  # Add to 'userz' collection
+        except Exception as e:
+            print(f"An error occurred while adding a user to 'userz': {e}")
+
     async def is_userz_exist(self, id):
-        user = await self.col.find_one({'id':int(id)})
+        user = await self.userz_col.find_one({'id': int(id)})
         return bool(user)
-        
-    async def is_user_exist(self, id):
-        user = await self.col.find_one({'id':int(id)})
-        return bool(user)
+            
     
     
     async def total_users_count(self):

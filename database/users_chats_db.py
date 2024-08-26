@@ -12,11 +12,12 @@ import datetime
 
 my_client = MongoClient(DATABASE_URI)
 mydb = my_client["referal_user"]
+mydb0 = my_client["referred_user"]
 
 
 
-async def referal_add_user1(user_id, ref_user_id):
-    user_db = mydb[str(user_id)]
+async def referred_add_user(user_id, ref_user_id):
+    user_db = mydb0[str(user_id)]
     user = {'_id': ref_user_id}
     
     try:

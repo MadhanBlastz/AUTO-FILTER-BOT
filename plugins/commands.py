@@ -77,7 +77,7 @@ async def start(client, message):
         f"Hello {message.from_user.first_name}, welcome to the bot!"
         
     )
-     if len(message.command) != 2:
+      if len(message.command) != 2:
          if PREMIUM_AND_REFERAL_MODE == True:
             buttons = [[
                 

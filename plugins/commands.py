@@ -67,7 +67,7 @@ async def start(client, message):
     # Check if the user is interacting for the first time
     if not await db.is_user_exist(message.from_user.id):
     # Add the user to the database
-        await db.add_user(message.from_user.id, message.from_user.first_name)
+       # await db.add_user(message.from_user.id, message.from_user.first_name)
     
     # Log the new user interaction
         await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))

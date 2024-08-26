@@ -287,7 +287,7 @@ async def start(client, message):
                     if not await db.is_user_exist(message.from_user.id):
                         await db.add_user(message.from_user.id, message.from_user.first_name)
                         await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
-                        return
+                        
 
                     fileName = {quote_plus(get_name(log_msg))}
                     stream = f"{URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
@@ -341,7 +341,7 @@ async def start(client, message):
                 if not await db.is_user_exist(message.from_user.id):
                     await db.add_user(message.from_user.id, message.from_user.first_name)
                     await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
-                    return
+                    
                 
             except FloodWait as e:
                 await asyncio.sleep(e.x)
@@ -357,7 +357,7 @@ async def start(client, message):
                 if not await db.is_user_exist(message.from_user.id):
                     await db.add_user(message.from_user.id, message.from_user.first_name)
                     await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
-                    return
+                    
                 await asyncio.sleep(3600)
                 for x in filesarr:
                     await x.delete()
@@ -548,7 +548,7 @@ async def start(client, message):
             if not await db.is_user_exist(message.from_user.id):
                 await db.add_user(message.from_user.id, message.from_user.first_name)
                 await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
-                return
+                
         await asyncio.sleep(3600)
         for x in filesarr:
             await x.delete()
@@ -623,7 +623,7 @@ async def start(client, message):
             if not await db.is_user_exist(message.from_user.id):
                 await db.add_user(message.from_user.id, message.from_user.first_name)
                 await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
-                return
+                
             filetype = msg.media
             file = getattr(msg, filetype.value)
             title = f"@File_Search_RoBot  {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), files.file_name.split()))}<b></b>"
@@ -694,6 +694,7 @@ async def start(client, message):
         button = [[
             InlineKeyboardButton('✇ Jᴏɪɴ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ ✇', url=CHNL_LNK)
         ]]
+    
     msg = await client.send_cached_media(
         chat_id=message.from_user.id,
         file_id=file_id,
@@ -704,7 +705,7 @@ async def start(client, message):
     if not await db.is_user_exist(message.from_user.id):
         await db.add_user(message.from_user.id, message.from_user.first_name)
         await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
-        return
+        
     btn = [[
         InlineKeyboardButton("Get File Again", callback_data=f'delfile#{file_id}')
     ]]

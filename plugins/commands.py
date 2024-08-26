@@ -216,7 +216,7 @@ async def start(client, message):
     data = message.command[1]
     if data.split("-", 1)[0] == "X":
         user_id = int(data.split("-", 1)[1])
-        if await db.is_user_exist(message.from_user.id):
+        if await db.is_userz_exist(message.from_user.id):
             await message.reply("You are already registered. Referrals do not apply.")
 
         else:

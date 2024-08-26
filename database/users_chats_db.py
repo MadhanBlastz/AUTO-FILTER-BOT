@@ -123,11 +123,10 @@ class Database:
             print(f"An error occurred while adding a user to 'users': {e}")
 
     async def is_user_exist(self, id):
-        user = await self.users_col.find_one({'id': int(id)})
-        if user:
-            return True
-        user = await self.userz_col.find_one({'id': int(id)})
-        return bool(user)
+    # Check only the 'users' collection
+    user = await self.users_col.find_one({'id': int(id)})
+    return bool(user)
+
 
     async def add_userz(self, id, name):
         user = self.new_user(id, name)

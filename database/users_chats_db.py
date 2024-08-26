@@ -124,8 +124,8 @@ class Database:
 
     async def is_user_exist(self, id):
     # Check only the 'users' collection
-    user = await self.users_col.find_one({'id': int(id)})
-    return bool(user)
+        user = await self.users_col.find_one({'id': int(id)})
+        return bool(user)
 
 
     async def add_userz(self, id, name):

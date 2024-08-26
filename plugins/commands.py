@@ -284,10 +284,7 @@ async def start(client, message):
                         chat_id=LOG_CHANNEL,
                         file_id=msg.get("file_id"),
                     )
-                    if not await db.is_user_exist(message.from_user.id):
-                        await db.add_user(message.from_user.id, message.from_user.first_name)
-                        await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
-                        
+                    
 
                     fileName = {quote_plus(get_name(log_msg))}
                     stream = f"{URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
@@ -338,10 +335,7 @@ async def start(client, message):
                     reply_markup=InlineKeyboardMarkup(button)
                 )
                 filesarr.append(msg)
-                if not await db.is_user_exist(message.from_user.id):
-                    await db.add_user(message.from_user.id, message.from_user.first_name)
-                    await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
-                    
+                
                 
             except FloodWait as e:
                 await asyncio.sleep(e.x)
@@ -354,10 +348,7 @@ async def start(client, message):
                     reply_markup=InlineKeyboardMarkup(button)
                 )
                 filesarr.append(msg)
-                if not await db.is_user_exist(message.from_user.id):
-                    await db.add_user(message.from_user.id, message.from_user.first_name)
-                    await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
-                    
+                
                 await asyncio.sleep(3600)
                 for x in filesarr:
                     await x.delete()
@@ -545,10 +536,7 @@ async def start(client, message):
                 reply_markup=InlineKeyboardMarkup(button)
             )
             filesarr.append(msg)
-            if not await db.is_user_exist(message.from_user.id):
-                await db.add_user(message.from_user.id, message.from_user.first_name)
-                await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
-                
+            
         await asyncio.sleep(3600)
         for x in filesarr:
             await x.delete()
@@ -620,10 +608,7 @@ async def start(client, message):
                 protect_content=True if pre == 'filep' else False,
                 reply_markup=InlineKeyboardMarkup(button)
             )
-            if not await db.is_user_exist(message.from_user.id):
-                await db.add_user(message.from_user.id, message.from_user.first_name)
-                await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
-                
+            
             filetype = msg.media
             file = getattr(msg, filetype.value)
             title = f"@File_Search_RoBot  {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), files.file_name.split()))}<b></b>"
@@ -702,10 +687,7 @@ async def start(client, message):
         protect_content=True if pre == 'filep' else False,
         reply_markup=InlineKeyboardMarkup(button)
     )
-    if not await db.is_user_exist(message.from_user.id):
-        await db.add_user(message.from_user.id, message.from_user.first_name)
-        await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
-        
+    
     btn = [[
         InlineKeyboardButton("Get File Again", callback_data=f'delfile#{file_id}')
     ]]

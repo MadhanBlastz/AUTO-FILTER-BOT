@@ -216,14 +216,14 @@ async def start(client, message):
     data = message.command[1]
     if data.split("-", 1)[0] == "X":
         user_id = int(data.split("-", 1)[1])
-        if await db.is_userz_exist(message.from_user.id):
-            await message.reply("You are already registered. Referrals do not apply.")
+       # if await db.is_userz_exist(message.from_user.id):
+          #  await message.reply("You are already registered. Referrals do not apply.")
 
-        else:
+    #    else:
              vj = await referal_add_user(user_id, message.from_user.id)
              if vj and PREMIUM_AND_REFERAL_MODE == True:
                  await message.reply(f"<b>You have joined using the referral link of user with ID {user_id}\n\nSend /start again to use the bot</b>")
-                 await db.add_userz(message.from_user.id, message.from_user.first_name)
+             #    await db.add_userz(message.from_user.id, message.from_user.first_name)
                  
                  num_referrals = await get_referal_users_count(user_id)
                  await client.send_message(chat_id = user_id, text = "<b>{} start the bot with your referral link\n\nTotal Referals - {}</b>".format(message.from_user.mention, num_referrals))

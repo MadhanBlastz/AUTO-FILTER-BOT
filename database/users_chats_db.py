@@ -88,7 +88,7 @@ class Database:
         self.db = self._client[database_name]
         self.col = self.db.users  # Collection for user data
        # self.userz_col = self.db.userz  # Collection for userz data
-        self.groups_col = self.db.groups  # Collection for group data
+        self.col = self.db.groups  # Collection for group data
 
     def new_user(self, id, name):
         return dict(
@@ -179,7 +179,7 @@ class Database:
 
     async def get_banned(self):
         users = self.col.find({'ban_status.is_banned': True})
-        chats = self.groups_col.find({'chat_status.is_disabled': True})
+        chats = self.col.find({'chat_status.is_disabled': True})
         b_chats = [chat['id'] async for chat in chats]
         b_users = [user['id'] async for user in users]
         return b_users, b_chats
@@ -188,11 +188,11 @@ class Database:
 
     async def add_chat(self, chat, title):
         chat = self.new_group(chat, title)
-        await self.groups_col.insert_one(chat)
+        await self.col.insert_one(chat)
     
 
     async def get_chat(self, chat):
-        chat = await self.groups_col.find_one({'id':int(chat)})
+        chat = await self.col.find_one({'id':int(chat)})
         return False if not chat else chat.get('chat_status')
     
 
@@ -201,14 +201,14 @@ class Database:
             is_disabled=False,
             reason="",
             )
-        await self.groups_col.update_one({'id': int(id)}, {'$set': {'chat_status': chat_status}})
+        await self.col.update_one({'id': int(id)}, {'$set': {'chat_status': chat_status}})
         
     async def update_settings(self, id, settings):
-        await self.groups_col.update_one({'id': int(id)}, {'$set': {'settings': settings}})
-        
+        await self.col.update_one({'id': int(id)}, {'$set': {'settings': settings}})
+       
     
     async def get_settings(self, id):
-        chat = await self.groups_col.find_one({'id':int(id)})
+        chat = await self.col.find_one({'id':int(id)})
         if chat:
             return chat.get('settings', self.default_setgs)
         return self.default_setgs
@@ -219,16 +219,16 @@ class Database:
             is_disabled=True,
             reason=reason,
             )
-        await self.groups_col.update_one({'id': int(chat)}, {'$set': {'chat_status': chat_status}})
+        await self.col.update_one({'id': int(chat)}, {'$set': {'chat_status': chat_status}})
     
 
     async def total_chat_count(self):
-        count = await self.groups_col.count_documents({})
+        count = await self.col.count_documents({})
         return count
     
 
     async def get_all_chats(self):
-        return self.groups_col.find({})
+        return self.col.find({})
 
 
     async def get_db_size(self):

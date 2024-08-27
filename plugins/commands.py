@@ -90,57 +90,57 @@ async def start(client, message):
             else:
                  buttons = [[
                 
-                InlineKeyboardButton('✇ Sʜᴀʀᴇ Oɴ WʜᴀᴛsAᴘᴘ ✇', url="https://wa.me/?text=https://telegram.me/{}?start={}")
+                 InlineKeyboardButton('✇ Sʜᴀʀᴇ Oɴ WʜᴀᴛsAᴘᴘ ✇', url="https://wa.me/?text=https://telegram.me/{}?start={}")
             ]]
         # reply_markup = InlineKeyboardMarkup(buttons)
-            m=await message.reply_sticker("CAACAgUAAxkBAAIGBGaIQ3GTvjPRwI1B_lFMKU-SFBSqAAIhAAPBJDExrJTo8r6ffCUeBA") 
-            await asyncio.sleep(1)
-            await m.delete()
-            await message.reply_photo(
-               photo=random.choice(PICS),
-               caption=script.START_TXT1.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
+                 m=await message.reply_sticker("CAACAgUAAxkBAAIGBGaIQ3GTvjPRwI1B_lFMKU-SFBSqAAIhAAPBJDExrJTo8r6ffCUeBA") 
+                 await asyncio.sleep(1)
+                 await m.delete()
+                 await message.reply_photo(
+                 photo=random.choice(PICS),
+                 caption=script.START_TXT1.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
             #reply_markup=reply_markup,
-               parse_mode=enums.ParseMode.HTML
-            ) 
-            return
+                 parse_mode=enums.ParseMode.HTML
+                 ) 
+                 return
     else:
     # Send welcome back message to an existing user
     
     # Send welcome back message to an existing user
-          welcome_message = (
+         welcome_message = (
         f"Hello {message.from_user.first_name}, welcome back to the bot!\n\n"
      
     ) 
          if len(message.command) != 2:
-            if PREMIUM_AND_REFERAL_MODE == True:
-                user_id = message.from_user.id
-                ABCDE = "https://t.me/share/url?url=https://telegram.me/File_Search_RoBot?start=X-{}".format(user_id)
-                ABCD = "https://wa.me/?text=https://telegram.me/File_Search_RoBot?start=X-{}".format(user_id)
+             if PREMIUM_AND_REFERAL_MODE == True:
+                 user_id = message.from_user.id
+                 ABCDE = "https://t.me/share/url?url=https://telegram.me/File_Search_RoBot?start=X-{}".format(user_id)
+                 ABCD = "https://wa.me/?text=https://telegram.me/File_Search_RoBot?start=X-{}".format(user_id)
         
             #user_id = message.from_user.id
           #  ABCD = "https://wa.me/?text=https://telegram.me/File_Search_RoBot?start=X-{}".format(user_id)
-                buttons = [[
-                
-                InlineKeyboardButton('💫 Rᴇғᴇʀ ᴏɴ WʜᴀᴛsAᴘᴘ 💫', url=ABCD)],[
-                InlineKeyboardButton('💫 Rᴇғᴇʀ ᴏɴ Tᴇʟᴇɢʀᴀᴍ 💫', url=ABCDE)
-            
-                ]]       
-            else:
                  buttons = [[
                 
-                InlineKeyboardButton('✇ Jᴏɪɴ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ ✇', url=CHNL_LNK)
+                 InlineKeyboardButton('💫 Rᴇғᴇʀ ᴏɴ WʜᴀᴛsAᴘᴘ 💫', url=ABCD)],[
+                 InlineKeyboardButton('💫 Rᴇғᴇʀ ᴏɴ Tᴇʟᴇɢʀᴀᴍ 💫', url=ABCDE)
+            
+                 ]]       
+             else:
+                  buttons = [[
+                
+                 InlineKeyboardButton('✇ Jᴏɪɴ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ ✇', url=CHNL_LNK)
             ]]
-                 reply_markup = InlineKeyboardMarkup(buttons)
-                 m=await message.reply_sticker("CAACAgUAAxkBAAIGBGaIQ3GTvjPRwI1B_lFMKU-SFBSqAAIhAAPBJDExrJTo8r6ffCUeBA") 
-                await asyncio.sleep(1)
-                await m.delete()
-                await message.reply_photo(
-            photo=random.choice(PICS),
-            caption=script.START_TXT2.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
-            reply_markup=reply_markup,
-            parse_mode=enums.ParseMode.HTML
-        )
-            return
+                  reply_markup = InlineKeyboardMarkup(buttons)
+                  m=await message.reply_sticker("CAACAgUAAxkBAAIGBGaIQ3GTvjPRwI1B_lFMKU-SFBSqAAIhAAPBJDExrJTo8r6ffCUeBA") 
+                  await asyncio.sleep(1)
+                  await m.delete()
+                  await message.reply_photo(
+                  photo=random.choice(PICS),
+                  caption=script.START_TXT2.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
+                  reply_markup=reply_markup,
+                  parse_mode=enums.ParseMode.HTML
+                  )
+                  return
     #await client.send_message(message.from_user.id, welcome_message)
 
         # Prepare inline keyboard for individual users

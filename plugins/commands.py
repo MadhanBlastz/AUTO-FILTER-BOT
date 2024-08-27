@@ -65,21 +65,21 @@ async def start(client, message):
         return
     
     # Check if the user is interacting for the first time
-    if not await db.is_user_exist(message.from_user.id):
+     if not await db.is_user_exist(message.from_user.id):
     # Add the user to the database
-        await db.add_user(message.from_user.id, message.from_user.first_name)
+         await db.add_user(message.from_user.id, message.from_user.first_name)
     
     # Log the new user interaction
-        await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
+         await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
     
     # Send welcome message to the new user
-        welcome_message = (
+         welcome_message = (
         f"Hello {message.from_user.first_name}, welcome to the bot!"
         
     )
-        if len(message.command) != 2:
-            if PREMIUM_AND_REFERAL_MODE == True:
-                buttons = [[
+         if len(message.command) != 2:
+             if PREMIUM_AND_REFERAL_MODE == True:
+                 buttons = [[
                 
    
                 
@@ -87,27 +87,27 @@ async def start(client, message):
                 InlineKeyboardButton('✨ ɢᴇᴛ ғʀᴇᴇ sᴜʙsᴄʀɪᴘᴛɪᴏɴ ✨', callback_data='subscription')
             
             ]]
-            else:
+             else:
                  buttons = [[
                 
                 InlineKeyboardButton('✇ Sʜᴀʀᴇ Oɴ WʜᴀᴛsAᴘᴘ ✇', url="https://wa.me/?text=https://telegram.me/{}?start={}")
             ]]
         # reply_markup = InlineKeyboardMarkup(buttons)
-            m=await message.reply_sticker("CAACAgUAAxkBAAIGBGaIQ3GTvjPRwI1B_lFMKU-SFBSqAAIhAAPBJDExrJTo8r6ffCUeBA") 
-            await asyncio.sleep(1)
-            await m.delete()
-            await message.reply_photo(
-               photo=random.choice(PICS),
-               caption=script.START_TXT1.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
+             m=await message.reply_sticker("CAACAgUAAxkBAAIGBGaIQ3GTvjPRwI1B_lFMKU-SFBSqAAIhAAPBJDExrJTo8r6ffCUeBA") 
+             await asyncio.sleep(1)
+             await m.delete()
+             await message.reply_photo(
+                photo=random.choice(PICS),
+                caption=script.START_TXT1.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
             #reply_markup=reply_markup,
-               parse_mode=enums.ParseMode.HTML
-            ) 
-            return
-    else:
+                parse_mode=enums.ParseMode.HTML
+             ) 
+             return
+     else:
     # Send welcome back message to an existing user
     
     # Send welcome back message to an existing user
-      welcome_message = (
+          welcome_message = (
         f"Hello {message.from_user.first_name}, welcome back to the bot!\n\n"
      
     ) 
